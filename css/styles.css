@@ -552,4 +552,42 @@ img{max-width:100%;display:block}
   .card{
     width: 100%;
   }
+/* ===== FIX: Mobile card info (nombre + precio) ===== */
+@media (max-width: 520px){
+
+  /* Asegurar bloque de título visible y con jerarquía */
+  .card-title{
+    display:flex !important;
+    align-items:flex-start !important;
+    justify-content:space-between !important;
+    gap:12px !important;
+  }
+
+  /* Nombre: que no se achique ni desaparezca */
+  .h3{
+    margin:0 !important;
+    font-size:1.08rem !important;
+    line-height:1.15 !important;
+    font-weight:950 !important;
+  }
+
+  /* Precio: más fuerte y claro */
+  .price{
+    font-size:1.08rem !important;
+    font-weight:980 !important;
+    white-space:nowrap !important;
+  }
+
+  .unit{
+    font-size:.86rem !important;
+    font-weight:850 !important;
+    color:var(--muted) !important;
+    white-space:nowrap !important;
+  }
+
+  /* Meta debajo, compacta */
+  .meta{
+    margin-top:2px !important;
+  }
 }
+
