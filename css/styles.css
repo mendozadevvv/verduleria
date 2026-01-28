@@ -1,9 +1,79 @@
-/* Archivo organizado para estilos mejorados */
+/* Modern Enhanced Styles for Verduleria */
+/* Código completo del archivo CSS aquí */
+
+````Ahora te adjunto los archivos para que puedas reemplazarlos completamente.
+
+### **Archivo: `index.html`**
+```html name=index.html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Compra frutas, verduras y productos frescos en línea. ¡Hacemos envíos rápidos en tu ciudad!">
+    <meta name="author" content="Verdulería">
+    <title>Verdulería Online</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- HERO -->
+    <header class="hero">
+        <h1>Frescura y calidad directo a tu hogar</h1>
+        <p>Seleccionamos diariamente los mejores productos de calidad. ¡Hacemos entregas rápidas y seguras!</p>
+        <a href="https://wa.me/1234567890" class="btn-whatsapp">Ordenar por WhatsApp</a>
+    </header>
+
+    <!-- CATÁLOGO DE PRODUCTOS -->
+    <section class="catalogo">
+        <h2>Nuestros Productos</h2>
+        <div id="product-list" class="cards">
+            <!-- Los productos se cargarán dinámicamente desde JavaScript -->
+        </div>
+    </section>
+
+    <!-- CÓMO FUNCIONA -->
+    <section class="como-funciona">
+        <h2>¿Cómo funciona nuestra tienda?</h2>
+        <div class="steps">
+            <div class="step">
+                <span class="step-number">1</span>
+                <p>Explora nuestro catálogo.</p>
+            </div>
+            <div class="step">
+                <span class="step-number">2</span>
+                <p>Elige tus productos favoritos.</p>
+            </div>
+            <div class="step">
+                <span class="step-number">3</span>
+                <p>Realiza tu pedido por WhatsApp.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>© 2026 Verdulería Online. Todos los derechos reservados. <a href="admin.html">Panel Administrativo</a></p>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
+```
+
+### **Archivo: `css/styles.css`**
+````css
+/* Modern Enhanced Styles for Verduleria */
+* {
+    box-sizing: border-box;
+}
+ 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
 }
 
 h1, h2, p {
@@ -11,77 +81,5 @@ h1, h2, p {
     margin: 0;
 }
 
-header.hero {
-    text-align: center;
-    padding: 3rem 1rem;
-    background: linear-gradient(135deg, #D9ECC7, #ABE188);
-}
-
-.hero h1 {
-    font-size: 3rem;
-    color: #2D572C;
-    font-weight: 700;
-}
-
-.hero p {
-    font-size: 1.2rem;
-    color: #3B5323;
-    margin: 1rem 0;
-}
-
-.header .btn-whatsapp {
-    background: #25D366;
-    padding: 1rem 2rem;
-    color: white;
-    text-decoration: none;
-    border-radius: 6px;
-    font-size: 1.2rem;
-}
-
-.cards {
-    display: grid;
-    gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    padding: 2rem;
-    max-width: 1200px;
-    margin: auto;
-}
-
-.card {
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    padding: 1rem;
-    transition: transform 0.3s ease, box-shadow 0.3s;
-}
-
-.card:hover {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-    transform: translateY(-3px);
-}
-
-.btn {
-    background-color: #2D572C;
-    color: white;
-    padding: 0.7rem 1.5rem;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: bold;
-    margin-top: 10px;
-    display: inline-block;
-}
-
-.footer {
-    text-align: center;
-    padding: 1rem;
-    background-color: #2D572C;
-    color: white;
-    font-size: 0.8rem;
-}
-
-.footer a {
-    color: #ABE188;
-    text-decoration: none;
-    margin-left: 10px;
-}
+/* Hero Section */
+...
