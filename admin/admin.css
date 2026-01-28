@@ -36,3 +36,80 @@ body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-ser
 .field{display:flex;flex-direction:column;gap:6px;font-weight:900;color:var(--muted)}
 .field.row{flex-direction:row;align-items:center;justify-content:space-between;grid-column:1/-1;color:var(--text)}
 @media (max-width:560px){.topbar-grid{grid-template-columns:1fr;height:auto;padding:12px 0}.actions{justify-content:flex-start}.form{grid-template-columns:1fr}}
+/* ===== Admin Mobile UX (cards) ===== */
+@media (max-width: 720px){
+  .topbar-grid{
+    grid-template-columns: 1fr;
+    height: auto;
+    padding: 12px 0;
+    gap: 10px;
+  }
+
+  .actions{
+    justify-content: flex-start;
+    gap: 8px;
+  }
+
+  .btn{
+    width: 100%;
+    justify-content: center;
+  }
+
+  .panel-head{
+    align-items: stretch;
+  }
+
+  .panel-actions{
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .table{
+    min-width: 0;
+  }
+
+  /* Ocultar header de tabla */
+  .table thead{
+    display: none;
+  }
+
+  /* Convertir filas en cards */
+  .table, .table tbody, .table tr, .table td{
+    display: block;
+    width: 100%;
+  }
+
+  .table tbody tr{
+    margin: 12px;
+    border: 1px solid rgba(0,0,0,.08);
+    background: rgba(255,255,255,.96);
+    border-radius: 18px;
+    box-shadow: 0 10px 22px rgba(0,0,0,.08);
+    overflow: hidden;
+  }
+
+  .table tbody td{
+    border: 0;
+    padding: 10px 12px;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .table tbody td::before{
+    content: attr(data-label);
+    font-weight: 900;
+    color: var(--muted);
+  }
+
+  /* la última celda (editar) alineada */
+  .table tbody td:last-child{
+    justify-content: flex-end;
+  }
+
+  .row-actions{
+    justify-content: flex-end;
+  }
+}
