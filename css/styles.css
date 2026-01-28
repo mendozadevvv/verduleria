@@ -510,3 +510,39 @@ img{max-width:100%;display:block}
 @media (min-width:1100px){
   .grid{grid-template-columns:repeat(4,minmax(0,1fr))}
 }
+/* ===== Mobile polish (cards) ===== */
+@media (max-width: 480px){
+  .card-body{ gap: 12px; }
+
+  /* Mejor respiración de la meta */
+  .meta{
+    font-size: .92rem;
+    gap: 8px;
+    line-height: 1.25;
+  }
+
+  /* Acciones en columna (pro en mobile) */
+  .card-actions{
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  /* Cantidad ocupa todo el ancho */
+  .qty{
+    width: 100%;
+    justify-content: space-between;
+    padding: 10px 12px;
+  }
+
+  .qty span{
+    min-width: auto;
+    flex: 1;
+    text-align: center;
+  }
+
+  /* Botón full width */
+  .card-actions .btn{
+    width: 100%;
+  }
+}
