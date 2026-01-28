@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verdulería Natural – Fresco todos los días</title>
+  <meta name="description" content="Verdulería de barrio con frutas y verduras frescas. Pedí rápido por WhatsApp o retiralo en el local. Calidad garantizada.">
+
+  <style>
+    /* ===============================
+       VARIABLES (futuro panel admin)
+    =============================== */
+    :root {
+      --primary: #2ecc71;
+      --primary-dark: #27ae60;
+      --bg: #f7f9f8;
+      --surface: #ffffff;
+      --text-main: #1e1e1e;
+      --text-muted: #6b7280;
+      --radius: 14px;
+      --shadow: 0 10px 30px rgba(0,0,0,.08);
+      --max-width: 1200px;
+    }
+
+    /* RESET */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
+      line-height: 1.5;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* LAYOUT */
+    .container {
+      max-width: var(--max-width);
+      margin: auto;
+      padding: 0 1rem;
+    }
+
+    /* HEADER */
+    header {
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 1.3rem;
+      color: var(--primary-dark);
+    }
+
+    .cta-btn {
+      background: var(--primary);
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+
+    /* HERO */
+    .hero {
+      padding: 4rem 0;
+      background: linear-gradient(135deg, #eafff2, #ffffff);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900;
+      line-height: 1.1;
+    }
+
+    .hero p {
+      color: var(--text-muted);
+      margin: 1rem 0 2rem;
+      max-width: 500px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-outline {
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      padding: 0.6rem 1.2rem;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+
+    /* BENEFICIOS */
+    .features {
+      padding: 4rem 0;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+    }
+
+    .feature {
+      background: var(--surface);
+      padding: 2rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .feature h3 {
+      margin-bottom: .5rem;
+    }
+
+    .feature p {
+      color: var(--text-muted);
+      font-size: .95rem;
+    }
+
+    /* PRODUCTOS */
+    .products {
+      padding: 4rem 0;
+      background: #ffffff;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+    }
+
+    .product-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-img {
+      height: 160px;
+      background: #e5e7eb;
+    }
+
+    .product-body {
+      padding: 1rem;
+      flex: 1;
+    }
+
+    .product-title {
+      font-weight: 700;
+      margin-bottom: .3rem;
+    }
+
+    .product-price {
+      color: var(--primary-dark);
+      font-weight: 800;
+    }
+
+    /* CTA FINAL */
+    .cta {
+      padding: 4rem 0;
+      text-align: center;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+    }
+
+    .cta h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 2rem 0;
+      background: #111;
+      color: #aaa;
+      font-size: .9rem;
+      text-align: center;
+    }
+
+    /* RESPONSIVE */
+    @media (min-width: 768px) {
+      .hero-grid {
+        grid-template-columns: 1.1fr .9fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container nav">
+    <div class="logo">Verdulería Natural</div>
+    <a href="#" class="cta-btn">Pedir por WhatsApp</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <h1>Frutas y verduras frescas, todos los días</h1>
+      <p>
+        Seleccionamos productos de calidad para que comas mejor.
+        Pedí fácil, rápido y sin vueltas.
+      </p>
+      <div class="hero-actions">
+        <a href="#" class="cta-btn">Ver productos</a>
+        <a href="#" class="btn-outline">Cómo funciona</a>
+      </div>
+    </div>
+    <div>
+      <!-- Imagen hero futura -->
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <div class="container features-grid">
+    <div class="feature">
+      <h3>🥬 Frescura garantizada</h3>
+      <p>Productos seleccionados todos los días.</p>
+    </div>
+    <div class="feature">
+      <h3>⚡ Pedido rápido</h3>
+      <p>En minutos armás tu compra.</p>
+    </div>
+    <div class="feature">
+      <h3>🏠 Verdulería de barrio</h3>
+      <p>Cercanía, confianza y buena atención.</p>
+    </div>
+  </div>
+</section>
+
+<section class="products">
+  <div class="container">
+    <div class="section-title">
+      <h2>Productos destacados</h2>
+      <p>Precios y stock actualizados</p>
+    </div>
+
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-img"></div>
+        <div class="product-body">
+          <div class="product-title">Tomate redondo</div>
+          <div class="product-price">$1.200 / kg</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img"></div>
+        <div class="product-body">
+          <div class="product-title">Papa blanca</div>
+          <div class="product-price">$800 / kg</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img"></div>
+        <div class="product-body">
+          <div class="product-title">Manzana roja</div>
+          <div class="product-price">$1.000 / kg</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container">
+    <h2>¿Listo para comer mejor?</h2>
+    <p>Hacé tu pedido ahora mismo</p>
+    <br>
+    <a href="#" class="cta-btn">Escribir por WhatsApp</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    © 2026 Verdulería Natural – Todos los derechos reservados
+  </div>
+</footer>
+
+</body>
+</html>
