@@ -29,7 +29,14 @@
   let editingId = null;
 
   function uid(){ return "p" + Math.random().toString(16).slice(2,10); }
-  function escapeHtml(s){ return String(s).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;"); }
+  function escapeHtml(s){
+    return String(s)
+      .replaceAll("&","&amp;")
+      .replaceAll("<","&lt;")
+      .replaceAll(">","&gt;")
+      .replaceAll('"',"&quot;")
+      .replaceAll("'","&#039;");
+  }
 
   function openModal(title){
     modalTitle.textContent = title;
@@ -66,14 +73,24 @@
 
     tbody.innerHTML = list.map(p => `
       <tr data-id="${escapeHtml(p.id)}">
-        <td>${escapeHtml(p.nombre)}</td>
-        <td>${escapeHtml(p.categoria)}</td>
-        <td>${p.unidad === "kg" ? "kg" : "unidad/atado"}</td>
-        <td>$${Math.round(p.precio).toLocaleString("es-AR")}</td>
-        <td>${p.stock ? '<span class="badge ok">Sí</span>' : '<span class="badge off">No</span>'}</td>
-        <td>${p.destacado ? '<span class="badge ok">Sí</span>' : '<span class="badge">No</span>'}</td>
-        <td><span class="muted">${escapeHtml(p.img || "")}</span></td>
-        <td><div class="row-actions"><button class="icon btnEdit" title="Editar">✎</button></div></td>
+        <td data-label="Nombre">${escapeHtml(p.nombre)}</td>
+        <td data-label="Categoría">${escapeHtml(p.categoria)}</td>
+        <td data-label="Unidad">${p.unidad === "kg" ? "kg" : "unidad/atado"}</td>
+        <td data-label="Precio">$${Math.round(p.precio).toLocaleString("es-AR")}</td>
+        <td data-label="Stock">
+          ${p.stock ? '<span class="badge ok">Sí</span>' : '<span class="badge off">No</span>'}
+        </td>
+        <td data-label="Destacado">
+          ${p.destacado ? '<span class="badge ok">Sí</span>' : '<span class="badge">No</span>'}
+        </td>
+        <td data-label="Img (ruta)">
+          <span class="muted">${escapeHtml(p.img || "")}</span>
+        </td>
+        <td data-label="Acción">
+          <div class="row-actions">
+            <button class="icon btnEdit" title="Editar">✎</button>
+          </div>
+        </td>
       </tr>
     `).join("");
 
@@ -98,8 +115,12 @@
   function readForm(){
     const nombre = f_nombre.value.trim();
     if (!nombre){ alert("Nombre requerido"); return null; }
+
     const precio = Number(f_precio.value);
-    if (!Number.isFinite(precio) || precio < 0){ alert("Precio inválido"); return null; }
+    if (!Number.isFinite(precio) || precio < 0){
+      alert("Precio inválido");
+      return null;
+    }
 
     return normalize({
       id: editingId || uid(),
@@ -132,9 +153,11 @@
   function save(){
     const p = readForm();
     if (!p) return;
+
     const idx = productos.findIndex(x=>x.id===p.id);
     if (idx >= 0) productos[idx] = p;
     else productos.unshift(p);
+
     closeModal();
     render();
   }
@@ -142,6 +165,7 @@
   function del(){
     if (!editingId) return;
     if (!confirm("¿Eliminar este producto?")) return;
+
     productos = productos.filter(p=>p.id!==editingId);
     closeModal();
     render();
@@ -166,7 +190,9 @@
         if (!Array.isArray(arr)) throw new Error("Formato inválido");
         productos = arr.map(normalize);
         render();
-      }catch(e){ alert("No se pudo importar: " + e.message); }
+      }catch(e){
+        alert("No se pudo importar: " + e.message);
+      }
     };
     reader.readAsText(file);
   }
@@ -175,6 +201,7 @@
     btnAdd.addEventListener("click", newProduct);
     btnExport.addEventListener("click", exportJson);
     btnImport.addEventListener("click", ()=>fileInput.click());
+
     fileInput.addEventListener("change", (e)=>{
       const f = e.target.files && e.target.files[0];
       if (f) importJson(f);
