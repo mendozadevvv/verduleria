@@ -1,9 +1,15 @@
-/* Archivo organizado para estilos mejorados */
+/* Modern Enhanced Styles for Verduleria */
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
 }
 
 h1, h2, p {
@@ -11,77 +17,359 @@ h1, h2, p {
     margin: 0;
 }
 
+/* Hero Section */
 header.hero {
     text-align: center;
-    padding: 3rem 1rem;
-    background: linear-gradient(135deg, #D9ECC7, #ABE188);
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #4CAF50, #81C784);
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .hero h1 {
     font-size: 3rem;
-    color: #2D572C;
     font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .hero p {
-    font-size: 1.2rem;
-    color: #3B5323;
-    margin: 1rem 0;
+    font-size: 1.3rem;
+    margin: 1rem auto 2rem;
+    max-width: 700px;
+    opacity: 0.95;
 }
 
-.header .btn-whatsapp {
+.btn-whatsapp {
     background: #25D366;
-    padding: 1rem 2rem;
+    padding: 1rem 2.5rem;
     color: white;
     text-decoration: none;
-    border-radius: 6px;
-    font-size: 1.2rem;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: inline-block;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(37, 211, 102, 0.3);
+}
+
+.btn-whatsapp:hover {
+    background: #20BA5A;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(37, 211, 102, 0.4);
+}
+
+/* Catalog Section */
+.catalogo {
+    padding: 3rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.catalogo h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #2D572C;
+    margin-bottom: 2rem;
+    font-weight: 700;
 }
 
 .cards {
     display: grid;
     gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    padding: 2rem;
-    max-width: 1200px;
-    margin: auto;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    padding: 1rem 0;
 }
 
 .card {
     background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     text-align: center;
-    padding: 1rem;
-    transition: transform 0.3s ease, box-shadow 0.3s;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    border: 1px solid #e0e0e0;
 }
 
 .card:hover {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    transform: translateY(-8px);
+    border-color: #4CAF50;
 }
 
-.btn {
-    background-color: #2D572C;
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.card:hover img {
+    transform: scale(1.05);
+}
+
+.card h3 {
+    font-size: 1.5rem;
+    color: #2D572C;
+    margin: 1rem 0 0.5rem;
+    font-weight: 600;
+}
+
+.card p {
+    font-size: 1.3rem;
+    color: #4CAF50;
+    font-weight: 700;
+    margin: 0.5rem 0 1rem;
+}
+
+/* How It Works Section */
+.como-funciona {
+    background: linear-gradient(135deg, #f5f5f5, #e8f5e9);
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.como-funciona h2 {
+    font-size: 2.5rem;
+    color: #2D572C;
+    margin-bottom: 3rem;
+    font-weight: 700;
+}
+
+.steps {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.step {
+    flex: 1;
+    min-width: 250px;
+    max-width: 350px;
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.step:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.step-number {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    background: linear-gradient(135deg, #4CAF50, #66BB6A);
     color: white;
-    padding: 0.7rem 1.5rem;
-    border-radius: 6px;
+    border-radius: 50%;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+}
+
+.step p {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Buttons */
+.btn {
+    background: linear-gradient(135deg, #4CAF50, #66BB6A);
+    color: white;
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 600;
     margin-top: 10px;
     display: inline-block;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+    font-size: 1rem;
 }
 
+.btn:hover {
+    background: linear-gradient(135deg, #43A047, #5CB860);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(76, 175, 80, 0.4);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+/* Admin Panel Styles */
+.admin-header {
+    background: linear-gradient(135deg, #2D572C, #4CAF50);
+    color: white;
+    padding: 3rem 2rem;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.admin-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.admin-header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.admin-panel {
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 0 2rem;
+}
+
+.admin-panel h2 {
+    font-size: 2rem;
+    color: #2D572C;
+    margin: 2rem 0 1.5rem;
+    font-weight: 700;
+    border-bottom: 3px solid #4CAF50;
+    padding-bottom: 0.5rem;
+}
+
+#product-form {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 3rem;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr 1fr;
+}
+
+#product-form input {
+    padding: 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Roboto', sans-serif;
+    transition: all 0.3s ease;
+}
+
+#product-form input:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+}
+
+#product-form button {
+    grid-column: 1 / -1;
+    font-size: 1.1rem;
+    padding: 1rem;
+}
+
+#admin-product-list {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+#admin-product-list .card {
+    position: relative;
+}
+
+.remove-btn {
+    background: linear-gradient(135deg, #f44336, #e91e63);
+    margin-top: 1rem;
+}
+
+.remove-btn:hover {
+    background: linear-gradient(135deg, #d32f2f, #c2185b);
+}
+
+/* Footer */
 .footer {
     text-align: center;
-    padding: 1rem;
-    background-color: #2D572C;
+    padding: 2rem;
+    background: linear-gradient(135deg, #2D572C, #1B3A1A);
     color: white;
-    font-size: 0.8rem;
+    margin-top: 4rem;
 }
 
 .footer a {
-    color: #ABE188;
+    color: #81C784;
     text-decoration: none;
     margin-left: 10px;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: #A5D6A7;
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+    }
+    
+    .catalogo h2,
+    .como-funciona h2 {
+        font-size: 2rem;
+    }
+    
+    .steps {
+        gap: 1.5rem;
+    }
+    
+    .cards {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    #product-form {
+        grid-template-columns: 1fr;
+        padding: 1.5rem;
+    }
+    
+    #admin-product-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding: 2rem 1rem;
+    }
+    
+    .hero h1 {
+        font-size: 1.5rem;
+    }
+    
+    .btn-whatsapp {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+    
+    .step-number {
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        font-size: 1.5rem;
+    }
 }
