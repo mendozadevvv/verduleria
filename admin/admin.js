@@ -74,18 +74,25 @@
     tbody.innerHTML = list.map(p => `
       <tr data-id="${escapeHtml(p.id)}">
         <td data-label="Nombre">${escapeHtml(p.nombre)}</td>
+
         <td data-label="Categoría">${escapeHtml(p.categoria)}</td>
+
         <td data-label="Unidad">${p.unidad === "kg" ? "kg" : "unidad/atado"}</td>
+
         <td data-label="Precio">$${Math.round(p.precio).toLocaleString("es-AR")}</td>
+
         <td data-label="Stock">
           ${p.stock ? '<span class="badge ok">Sí</span>' : '<span class="badge off">No</span>'}
         </td>
+
         <td data-label="Destacado">
           ${p.destacado ? '<span class="badge ok">Sí</span>' : '<span class="badge">No</span>'}
         </td>
-        <td data-label="Img (ruta)">
+
+        <td data-label="Img (ruta)" class="${p.img ? "" : "is-empty"}">
           <span class="muted">${escapeHtml(p.img || "")}</span>
         </td>
+
         <td data-label="Acción">
           <div class="row-actions">
             <button class="icon btnEdit" title="Editar">✎</button>
