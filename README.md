@@ -1,3 +1,3 @@
-# Verduleria
+# Verdulería
 
-This is the README file for the Verduleria repository. It provides an overview of the project.
+This is the README file for the Verdulería repository. It provides an overview of the project.
