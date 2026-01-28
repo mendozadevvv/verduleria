@@ -1,6 +1,6 @@
 /* =========================================================
    Admin — Verdulería Natural (admin.css COMPLETO)
-   - Mobile: tabla -> cards
+   - Mobile: tabla -> cards (con labels)
    - Modal responsive
    - Fix hidden (por si se usa hidden con JS)
    ========================================================= */
@@ -18,6 +18,7 @@
 }
 
 *{box-sizing:border-box}
+
 body{
   margin:0;
   font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
@@ -29,6 +30,7 @@ body{
 .muted{color:var(--muted)}
 code{background:rgba(0,0,0,.05);padding:.1rem .35rem;border-radius:8px}
 
+/* Topbar */
 .topbar{
   position:sticky;top:0;z-index:10;
   background:rgba(255,255,255,.85);
@@ -43,9 +45,7 @@ code{background:rgba(0,0,0,.05);padding:.1rem .35rem;border-radius:8px}
   gap:12px
 }
 .brand{font-weight:900}
-
 .title .h1{font-weight:950;font-size:1.15rem}
-
 .actions{
   display:flex;
   gap:10px;
@@ -53,6 +53,7 @@ code{background:rgba(0,0,0,.05);padding:.1rem .35rem;border-radius:8px}
   justify-content:flex-end
 }
 
+/* Buttons / Inputs */
 .btn{
   border:1px solid rgba(0,0,0,.10);
   background:rgba(255,255,255,.95);
@@ -83,6 +84,7 @@ code{background:rgba(0,0,0,.05);padding:.1rem .35rem;border-radius:8px}
   box-shadow:0 0 0 6px rgba(46,204,113,.22)
 }
 
+/* Panel */
 .panel{
   margin:20px 0;
   background:rgba(255,255,255,.88);
@@ -102,6 +104,7 @@ code{background:rgba(0,0,0,.05);padding:.1rem .35rem;border-radius:8px}
 .h2{font-weight:950;font-size:1.1rem}
 .panel-actions{display:flex;gap:10px;align-items:center}
 
+/* Table desktop */
 .table-wrap{overflow:auto}
 .table{
   width:100%;
@@ -145,6 +148,7 @@ code{background:rgba(0,0,0,.05);padding:.1rem .35rem;border-radius:8px}
   cursor:pointer
 }
 
+/* Hint */
 .hint{padding:14px}
 .hint-title{font-weight:950}
 .hint-body{margin-top:6px;color:var(--muted);font-weight:700}
@@ -191,15 +195,19 @@ code{background:rgba(0,0,0,.05);padding:.1rem .35rem;border-radius:8px}
   color:var(--text)
 }
 
-/* Breakpoint original */
+/* Breakpoint form/topbar */
 @media (max-width:560px){
   .topbar-grid{grid-template-columns:1fr;height:auto;padding:12px 0}
   .actions{justify-content:flex-start}
   .form{grid-template-columns:1fr}
 }
 
-/* ===== Admin Mobile UX (cards) ===== */
+/* =========================================================
+   MOBILE: tabla -> cards (FINAL)
+   Requiere data-label en <td>
+   ========================================================= */
 @media (max-width: 720px){
+
   .topbar-grid{
     grid-template-columns: 1fr;
     height: auto;
@@ -228,23 +236,22 @@ code{background:rgba(0,0,0,.05);padding:.1rem .35rem;border-radius:8px}
     gap: 10px;
   }
 
-  .table{
-    min-width: 0;
-  }
+  /* desactivar min width de tabla */
+  .table{min-width: 0}
 
-  /* Ocultar header de tabla */
-  .table thead{
-    display: none;
-  }
+  /* ocultar header */
+  .table thead{display:none}
 
-  /* Convertir tabla a cards */
+  /* tabla -> blocks */
   .table, .table tbody, .table tr, .table td{
-    display: block;
-    width: 100%;
+    display:block;
+    width:100%;
   }
 
+  /* card */
   .table tbody tr{
     margin: 12px;
+    padding: 14px;
     border: 1px solid rgba(0,0,0,.08);
     background: rgba(255,255,255,.96);
     border-radius: 18px;
@@ -252,101 +259,61 @@ code{background:rgba(0,0,0,.05);padding:.1rem .35rem;border-radius:8px}
     overflow: hidden;
   }
 
+  /* filas internas: label/valor */
   .table tbody td{
     border: 0;
-    padding: 10px 12px;
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-    align-items: flex-start;
+    padding: 6px 0;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 10px;
+    font-size: .95rem;
+    word-break: break-word;
   }
 
-  /* Label izquierda (Nombre, Categoría, etc.) */
   .table tbody td::before{
     content: attr(data-label);
     font-weight: 900;
+    font-size: .85rem;
     color: var(--muted);
-    flex: 0 0 auto;
-    max-width: 42%;
+    white-space: nowrap;
   }
 
-  /* Valor derecha: permitir wrap y no romper */
-  .table tbody td{
-    word-break: break-word;
-  }
   .table tbody td > *{
+    justify-self: end;
     text-align: right;
-    max-width: 58%;
+    max-width: 100%;
   }
 
-  /* Última celda (acción) */
-  .table tbody td:last-child{
-    justify-content: flex-end;
-  }
-  .row-actions{
-    justify-content: flex-end;
-  }
-/* ===== Admin Mobile UX FIX FINAL ===== */
-@media (max-width: 720px){
-
-  /* Card */
-  .table tbody tr{
-    padding: 12px;
-  }
-
-  /* Cada fila */
-  .table tbody td{
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: center;
-    padding: 8px 0;
-    font-size: .95rem;
-  }
-
-  /* Label */
-  .table tbody td::before{
-    font-size: .8rem;
-    font-weight: 800;
-    color: var(--muted);
-  }
-
-  /* Nombre destacado */
+  /* Nombre destacado arriba */
   .table tbody td[data-label="Nombre"]{
+    padding: 0 0 10px;
     grid-template-columns: 1fr;
-    font-size: 1.05rem;
+    font-size: 1.1rem;
     font-weight: 950;
-    padding-bottom: 6px;
+  }
+  .table tbody td[data-label="Nombre"]::before{display:none}
+  .table tbody td[data-label="Nombre"] > *{
+    justify-self: start;
+    text-align: left;
   }
 
-  .table tbody td[data-label="Nombre"]::before{
-    display: none;
-  }
-
-  /* Precio más grande */
+  /* Precio un poco más fuerte */
   .table tbody td[data-label="Precio"]{
-    font-weight: 950;
     font-size: 1.05rem;
+    font-weight: 950;
   }
 
-  /* Badges alineados */
-  .badge{
-    justify-self: flex-end;
-  }
+  /* badges alineados */
+  .badge{justify-self:end}
 
-  /* Acción editar */
+  /* Acción sin label, botón bien */
   .table tbody td[data-label="Acción"]{
-    padding-top: 10px;
-    justify-content: flex-end;
+    padding-top: 12px;
+    grid-template-columns: 1fr;
   }
+  .table tbody td[data-label="Acción"]::before{display:none}
 
-  .row-actions{
-    width: 100%;
-    justify-content: flex-end;
-  }
-
-  .icon{
-    width: 42px;
-    height: 42px;
-  }
+  .row-actions{justify-content:flex-end}
+  .icon{width:44px;height:44px}
 }
-
