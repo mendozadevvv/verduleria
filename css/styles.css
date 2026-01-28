@@ -1,72 +1,8 @@
 /* Modern Enhanced Styles for Verduleria */
-/* Código completo del archivo CSS aquí */
-
-````Ahora te adjunto los archivos para que puedas reemplazarlos completamente.
-
-### **Archivo: `index.html`**
-```html name=index.html
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Compra frutas, verduras y productos frescos en línea. ¡Hacemos envíos rápidos en tu ciudad!">
-    <meta name="author" content="Verdulería">
-    <title>Verdulería Online</title>
-    <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-    <!-- HERO -->
-    <header class="hero">
-        <h1>Frescura y calidad directo a tu hogar</h1>
-        <p>Seleccionamos diariamente los mejores productos de calidad. ¡Hacemos entregas rápidas y seguras!</p>
-        <a href="https://wa.me/1234567890" class="btn-whatsapp">Ordenar por WhatsApp</a>
-    </header>
-
-    <!-- CATÁLOGO DE PRODUCTOS -->
-    <section class="catalogo">
-        <h2>Nuestros Productos</h2>
-        <div id="product-list" class="cards">
-            <!-- Los productos se cargarán dinámicamente desde JavaScript -->
-        </div>
-    </section>
-
-    <!-- CÓMO FUNCIONA -->
-    <section class="como-funciona">
-        <h2>¿Cómo funciona nuestra tienda?</h2>
-        <div class="steps">
-            <div class="step">
-                <span class="step-number">1</span>
-                <p>Explora nuestro catálogo.</p>
-            </div>
-            <div class="step">
-                <span class="step-number">2</span>
-                <p>Elige tus productos favoritos.</p>
-            </div>
-            <div class="step">
-                <span class="step-number">3</span>
-                <p>Realiza tu pedido por WhatsApp.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-        <p>© 2026 Verdulería Online. Todos los derechos reservados. <a href="admin.html">Panel Administrativo</a></p>
-    </footer>
-
-    <script src="js/app.js"></script>
-</body>
-</html>
-```
-
-### **Archivo: `css/styles.css`**
-````css
-/* Modern Enhanced Styles for Verduleria */
 * {
     box-sizing: border-box;
 }
- 
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
     margin: 0;
@@ -82,4 +18,214 @@ h1, h2, p {
 }
 
 /* Hero Section */
-...
+header.hero {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #4CAF50, #81C784);
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.hero h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.hero p {
+    font-size: 1.3rem;
+    margin: 1rem auto 2rem;
+    max-width: 700px;
+    opacity: 0.95;
+}
+
+.btn-whatsapp {
+    background: #25D366;
+    padding: 1rem 2.5rem;
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: inline-block;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(37, 211, 102, 0.3);
+}
+
+.btn-whatsapp:hover {
+    background: #20BA5A;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(37, 211, 102, 0.4);
+}
+
+/* Catalog Section */
+.catalogo {
+    padding: 3rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.catalogo h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #2D572C;
+    margin-bottom: 2rem;
+    font-weight: 700;
+}
+
+.cards {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    padding: 1rem 0;
+}
+
+.card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    border: 1px solid #e0e0e0;
+}
+
+.card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    transform: translateY(-8px);
+    border-color: #4CAF50;
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.card:hover img {
+    transform: scale(1.05);
+}
+
+.card h3 {
+    font-size: 1.5rem;
+    color: #2D572C;
+    margin: 1rem 0 0.5rem;
+    font-weight: 600;
+}
+
+.card p {
+    font-size: 1.3rem;
+    color: #4CAF50;
+    font-weight: 700;
+    margin: 0.5rem 0 1rem;
+}
+
+/* How It Works Section */
+.como-funciona {
+    background: linear-gradient(135deg, #f5f5f5, #e8f5e9);
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.como-funciona h2 {
+    font-size: 2.5rem;
+    color: #2D572C;
+    margin-bottom: 3rem;
+    font-weight: 700;
+}
+
+.steps {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.step {
+    flex: 1;
+    min-width: 250px;
+    max-width: 350px;
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.step:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.step-number {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    background: linear-gradient(135deg, #4CAF50, #66BB6A);
+    color: white;
+    border-radius: 50%;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+}
+
+.step p {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Admin Panel Styles */
+.admin-header {
+    background: linear-gradient(135deg, #2D572C, #4CAF50);
+    color: white;
+    padding: 3rem 2rem;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.admin-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.admin-panel {
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 0 2rem;
+}
+
+.admin-panel h2 {
+    font-size: 2rem;
+    color: #2D572C;
+    margin: 2rem 0 1.5rem;
+    font-weight: 700;
+}
+
+#product-form {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 2rem;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr 1fr;
+}
+
+.notification.success {
+    background: linear-gradient(135deg, #4CAF50, #66BB6A);
+}
+
+.notification.error {
+    background: linear-gradient(135deg, #f44336, #e57373);
+}
