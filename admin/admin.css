@@ -286,4 +286,67 @@ code{background:rgba(0,0,0,.05);padding:.1rem .35rem;border-radius:8px}
   .row-actions{
     justify-content: flex-end;
   }
+/* ===== Admin Mobile UX FIX FINAL ===== */
+@media (max-width: 720px){
+
+  /* Card */
+  .table tbody tr{
+    padding: 12px;
+  }
+
+  /* Cada fila */
+  .table tbody td{
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    padding: 8px 0;
+    font-size: .95rem;
+  }
+
+  /* Label */
+  .table tbody td::before{
+    font-size: .8rem;
+    font-weight: 800;
+    color: var(--muted);
+  }
+
+  /* Nombre destacado */
+  .table tbody td[data-label="Nombre"]{
+    grid-template-columns: 1fr;
+    font-size: 1.05rem;
+    font-weight: 950;
+    padding-bottom: 6px;
+  }
+
+  .table tbody td[data-label="Nombre"]::before{
+    display: none;
+  }
+
+  /* Precio más grande */
+  .table tbody td[data-label="Precio"]{
+    font-weight: 950;
+    font-size: 1.05rem;
+  }
+
+  /* Badges alineados */
+  .badge{
+    justify-self: flex-end;
+  }
+
+  /* Acción editar */
+  .table tbody td[data-label="Acción"]{
+    padding-top: 10px;
+    justify-content: flex-end;
+  }
+
+  .row-actions{
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .icon{
+    width: 42px;
+    height: 42px;
+  }
 }
+
