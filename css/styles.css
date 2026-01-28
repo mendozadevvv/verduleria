@@ -1,0 +1,128 @@
+/* General */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 4rem 1.5rem;
+    background: linear-gradient(135deg, #e9f5db, #d4e09b);
+}
+.hero h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #4a7c59;
+}
+.hero p {
+    font-size: 1.25rem;
+    margin: 1rem 0;
+}
+.btn-whatsapp {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: #25d366;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Section Titles */
+h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin: 2rem 0;
+}
+
+/* Catálogo */
+.catalogo .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+.card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+.card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+.card:hover {
+    transform: scale(1.05);
+}
+.btn {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background: #4a7c59;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+/* Cómo Funciona Section */
+.como-funciona {
+    background: #f9f9f9;
+    padding: 2rem 1rem;
+}
+.como-funciona .steps {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.step {
+    text-align: center;
+}
+.step-number {
+    display: inline-block;
+    font-size: 2rem;
+    color: #fff;
+    background: #4a7c59;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    margin-bottom: 0.5rem;
+}
+
+/* CTA Final */
+.cta-final {
+    background: #d4e09b;
+    text-align: center;
+    padding: 2rem 1rem;
+}
+.btn-lg {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: #25d366;
+    color: #fff;
+    font-size: 1.25rem;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+/* Footer */
+.footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    font-size: 0.875rem;
+}
