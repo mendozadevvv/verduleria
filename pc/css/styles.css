@@ -833,3 +833,30 @@ body.view-pc .card-top{
 body.view-pc .card-top img{
   object-fit: cover;
 }
+
+
+/* === V7 PC: true full width === */
+@media (min-width: 900px){
+  body.view-pc .container,
+  body.view-pc header .container,
+  body.view-pc main .container{
+    max-width: none !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 32px !important;
+    padding-right: 32px !important;
+  }
+
+  /* If there's any global wrapper limiting width */
+  body.view-pc .wrap, body.view-pc .wrapper, body.view-pc .shell, body.view-pc .page{
+    max-width: none !important;
+    width: 100% !important;
+  }
+
+  /* Give hero more breathing room on wide screens */
+  body.view-pc .hero{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}

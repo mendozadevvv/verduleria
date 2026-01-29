@@ -10,7 +10,7 @@
 <body>
   <header class="topbar">
     <div class="wrap topbar-grid">
-      <a class="brand" href="../index.html">← Volver</a>
+      <a class="brand" href="../pc/" id="btnVolver">← Volver</a>
       <div class="title">
         <div class="h1">Admin (demo)</div>
         <div class="muted">Editá productos y exportá el JSON para reemplazar <code>/data/productos.json</code></div>
@@ -152,5 +152,28 @@
   </div>
 
   <script src="admin.js"></script>
+
+<script>
+/* btnVolverSmart: avoid 404 and return to correct view */
+(function(){
+  var a = document.getElementById('btnVolver');
+  if(!a) return;
+  // Prefer history.back when available
+  try{
+    if (window.history && history.length > 1) {
+      a.addEventListener('click', function(e){
+        e.preventDefault();
+        history.back();
+      });
+      return;
+    }
+  }catch(e){}
+  var ua = (navigator.userAgent||"").toLowerCase();
+  var isMobile = /(android|iphone|ipod|ipad|iemobile|blackberry|opera mini|mobile|webos)/.test(ua);
+  a.setAttribute('href', isMobile ? '../mobile/' : '../pc/');
+  a.dataset.btnVolverSmart = '1';
+})();
+</script>
+
 </body>
 </html>
