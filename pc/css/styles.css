@@ -860,3 +860,18 @@ body.view-pc .card-top img{
     padding-right: 0 !important;
   }
 }
+
+
+/* === V8 PC: ensure name/price visible (override any accidental styles) === */
+body.view-pc .card-body{ background: transparent; color: var(--text, #121614) !important; }
+body.view-pc .card-title,
+body.view-pc .meta{ display:flex !important; opacity:1 !important; visibility:visible !important; }
+
+body.view-pc .h3{ color: var(--text, #121614) !important; }
+body.view-pc .price,
+body.view-pc .strike{ color: var(--text, #121614) !important; }
+body.view-pc .unit{ color: var(--muted, #5b6762) !important; }
+
+/* If some layer overlaps text, bring body above */
+body.view-pc .card-body{ position:relative; z-index:2; }
+body.view-pc .card-top{ z-index:1; }
