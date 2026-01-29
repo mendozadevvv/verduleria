@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — Packs</title>
+  <meta name="description" content="Crea combos/packs (sin backend)." />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-grid">
+      <a class="brand" href="index.html">← Productos</a>
+      <div class="title">
+        <div class="h1">Packs / Combos</div>
+        <div class="muted">Editá y exportá <code>/data/packs.json</code></div>
+      </div>
+      <div class="actions">
+        <button class="btn" id="btnImport">Importar JSON</button>
+        <button class="btn primary" id="btnExport">Exportar JSON</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="panel">
+      <div class="panel-head">
+        <div>
+          <div class="h2">Lista de packs</div>
+          <div class="muted">Cada pack tiene items {id del producto + cantidad}.</div>
+        </div>
+        <div class="panel-actions">
+          <button class="btn" id="btnAdd">+ Nuevo pack</button>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Descripción</th>
+              <th>Items</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+
+      <div class="hint">
+        <div class="hint-title">ℹ️ Tip</div>
+        <div class="hint-body">Usá el ID del producto (ej: <code>p1</code>) y la cantidad (kg o unidades según corresponda).</div>
+      </div>
+    </section>
+  </main>
+
+  <input type="file" id="fileInput" accept="application/json" hidden />
+
+  <div class="modal-backdrop" id="modalBackdrop" hidden></div>
+  <div class="modal" id="modal" role="dialog" aria-modal="true" hidden>
+    <div class="modal-head">
+      <div class="h2" id="modalTitle">Nuevo pack</div>
+      <button class="icon" id="btnClose" aria-label="Cerrar">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form">
+        <label class="field" style="grid-column:1/-1">
+          <span>Nombre</span>
+          <input class="input" id="f_nombre" placeholder="Pack Ensalada" />
+        </label>
+        <label class="field" style="grid-column:1/-1">
+          <span>Descripción</span>
+          <input class="input" id="f_descripcion" placeholder="Ideal para 2-3 ensaladas" />
+        </label>
+        <label class="field" style="grid-column:1/-1">
+          <span>Items (uno por línea)</span>
+          <textarea class="input" id="f_items" rows="8" placeholder="p1,1\np2,1\np3,0.5"></textarea>
+          <div class="muted" style="margin-top:6px">Formato: <code>id,cantidad</code> (ej: <code>p1,1</code>)</div>
+        </label>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn" id="btnDelete" hidden>Eliminar</button>
+      <div style="display:flex; gap:10px">
+        <button class="btn" id="btnCancel">Cancelar</button>
+        <button class="btn primary" id="btnSave">Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="packs.js"></script>
+</body>
+</html>

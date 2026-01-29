@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — Verdulería Natural</title>
+  <meta name="description" content="Panel admin demo para editar productos y exportar/importar el JSON." />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-grid">
+      <a class="brand" href="../index.html">← Volver</a>
+      <div class="title">
+        <div class="h1">Admin (demo)</div>
+        <div class="muted">Editá productos y exportá el JSON para reemplazar <code>/data/productos.json</code></div>
+      </div>
+      <div class="actions">
+        <a class="btn" href="config.html">Configuración</a>
+        <a class="btn" href="packs.html">Packs</a>
+        <button class="btn" id="btnImport">Importar JSON</button>
+        <button class="btn primary" id="btnExport">Exportar JSON</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="panel">
+      <div class="panel-head">
+        <div>
+          <div class="h2">Productos</div>
+          <div class="muted">Por kg o por unidad/atado • Stock • Destacado • Categoría</div>
+        </div>
+        <div class="panel-actions">
+          <input class="input" id="search" placeholder="Buscar..." />
+          <button class="btn" id="btnAdd">+ Nuevo</button>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Categoría</th>
+              <th>Unidad</th>
+              <th>Precio</th>
+              <th>Oferta</th>
+              <th>Nuevo</th>
+              <th>Más vendido</th>
+              <th>Stock</th>
+              <th>Destacado</th>
+              <th>Img (ruta)</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+
+      <div class="hint">
+        <div class="hint-title">⚠️ Nota</div>
+        <div class="hint-body">
+          Este admin es <strong>sin backend</strong>: no puede escribir en el servidor.
+          Usá <strong>Exportar</strong> para bajar el JSON y reemplazarlo en <code>/data/productos.json</code>.
+          Si querés guardado real, lo migramos a <strong>PHP + MySQL</strong>.
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <div>
+          <div class="h2">WhatsApp</div>
+          <div class="muted">Se configura en <code>/js/app.js</code> (WHATSAPP_PHONE).</div>
+        </div>
+      </div>
+      <div class="hint-body muted">Formato recomendado: <strong>549261XXXXXXXX</strong> (Argentina, sin +)</div>
+    </section>
+  </main>
+
+  <input type="file" id="fileInput" accept="application/json" hidden />
+
+  <div class="modal-backdrop" id="modalBackdrop" hidden></div>
+  <div class="modal" id="modal" role="dialog" aria-modal="true" hidden>
+    <div class="modal-head">
+      <div class="h2" id="modalTitle">Nuevo producto</div>
+      <button class="icon" id="btnClose" aria-label="Cerrar">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form">
+        <label class="field" style="grid-column:1/-1">
+          <span>Nombre</span>
+          <input class="input" id="f_nombre" />
+        </label>
+        <label class="field">
+          <span>Categoría</span>
+          <input class="input" id="f_categoria" placeholder="Verduras / Frutas / Almacén..." />
+        </label>
+        <label class="field">
+          <span>Unidad</span>
+          <select class="input" id="f_unidad">
+            <option value="kg">kg</option>
+            <option value="unidad">unidad/atado</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>Precio (ARS)</span>
+          <input class="input" id="f_precio" type="number" min="0" step="1" />
+        </label>
+        <label class="field">
+          <span>Precio oferta (opcional)</span>
+          <input class="input" id="f_precio_oferta" type="number" min="0" step="1" placeholder="Ej: 999" />
+        </label>
+        <label class="field row">
+          <span>Stock</span>
+          <input id="f_stock" type="checkbox" />
+        </label>
+        <label class="field row">
+          <span>Destacado</span>
+          <input id="f_destacado" type="checkbox" />
+        </label>
+        <label class="field row">
+          <span>Oferta</span>
+          <input id="f_oferta" type="checkbox" />
+        </label>
+        <label class="field row">
+          <span>Nuevo</span>
+          <input id="f_nuevo" type="checkbox" />
+        </label>
+        <label class="field row">
+          <span>Más vendido</span>
+          <input id="f_mas_vendido" type="checkbox" />
+        </label>
+        <label class="field">
+          <span>Stock bajo (umbral)</span>
+          <input class="input" id="f_stock_bajo" type="number" min="0" step="1" placeholder="0 = sin alerta" />
+        </label>
+        <label class="field" style="grid-column:1/-1">
+          <span>Img (ruta)</span>
+          <input class="input" id="f_img" placeholder="img/productos/tomate.webp" />
+        </label>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn" id="btnDelete" hidden>Eliminar</button>
+      <div style="display:flex; gap:10px">
+        <button class="btn" id="btnCancel">Cancelar</button>
+        <button class="btn primary" id="btnSave">Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

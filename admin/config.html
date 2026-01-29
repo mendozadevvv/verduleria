@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — Configuración</title>
+  <meta name="description" content="Configura el negocio y WhatsApp (sin backend)." />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-grid">
+      <a class="brand" href="index.html">← Productos</a>
+      <div class="title">
+        <div class="h1">Configuración</div>
+        <div class="muted">Editá y exportá <code>/data/config.json</code></div>
+      </div>
+      <div class="actions">
+        <button class="btn" id="btnImport">Importar JSON</button>
+        <button class="btn primary" id="btnExport">Exportar JSON</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="panel">
+      <div class="panel-head">
+        <div>
+          <div class="h2">Datos del negocio</div>
+          <div class="muted">Lo usa la landing para títulos, modo retiro/entrega y WhatsApp.</div>
+        </div>
+      </div>
+
+      <div class="form" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+        <label class="field" style="grid-column:1/-1">
+          <span>Nombre del negocio</span>
+          <input class="input" id="business_name" placeholder="Verdulería Natural" />
+        </label>
+
+        <label class="field">
+          <span>Modo de pedidos</span>
+          <select class="input" id="order_mode">
+            <option value="pickup">Solo retiro</option>
+            <option value="delivery">Solo entrega</option>
+            <option value="both">Retiro y entrega</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>WhatsApp (sin +)</span>
+          <input class="input" id="whatsapp_phone" placeholder="549261XXXXXXXX" />
+        </label>
+
+        <label class="field" style="grid-column:1/-1">
+          <span>Titular (Hero)</span>
+          <input class="input" id="headline" />
+        </label>
+
+        <label class="field" style="grid-column:1/-1">
+          <span>Descripción (Hero)</span>
+          <input class="input" id="lead" />
+        </label>
+
+        <label class="field" style="grid-column:1/-1">
+          <span>Micro nota (opcional)</span>
+          <input class="input" id="micro_note" placeholder="Catálogo actualizado..." />
+        </label>
+      </div>
+
+      <div class="hint" style="margin-top:16px">
+        <div class="hint-title">Cómo se aplica</div>
+        <div class="hint-body">
+          Este panel <strong>descarga</strong> un archivo. Para que quede fijo en tu web, reemplazá
+          <code>/data/config.json</code> con el exportado.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <input type="file" id="fileInput" accept="application/json" hidden />
+  <script src="config.js"></script>
+</body>
+</html>

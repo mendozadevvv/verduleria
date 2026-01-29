@@ -1,0 +1,102 @@
+[
+  {
+    "id": "p1",
+    "nombre": "Tomate redondo",
+    "categoria": "Verduras",
+    "unidad": "kg",
+    "precio": 1200,
+    "stock": true,
+    "destacado": true,
+    "img": ""
+  },
+  {
+    "id": "p2",
+    "nombre": "Papa blanca",
+    "categoria": "Verduras",
+    "unidad": "kg",
+    "precio": 800,
+    "stock": true,
+    "destacado": false,
+    "img": ""
+  },
+  {
+    "id": "p3",
+    "nombre": "Cebolla",
+    "categoria": "Verduras",
+    "unidad": "kg",
+    "precio": 900,
+    "stock": true,
+    "destacado": false,
+    "img": ""
+  },
+  {
+    "id": "p4",
+    "nombre": "Lechuga mantecosa",
+    "categoria": "Verduras",
+    "unidad": "unidad",
+    "precio": 700,
+    "stock": true,
+    "destacado": true,
+    "img": ""
+  },
+  {
+    "id": "p5",
+    "nombre": "Acelga (atado)",
+    "categoria": "Verduras",
+    "unidad": "unidad",
+    "precio": 650,
+    "stock": true,
+    "destacado": false,
+    "img": ""
+  },
+  {
+    "id": "p6",
+    "nombre": "Banana",
+    "categoria": "Frutas",
+    "unidad": "kg",
+    "precio": 1800,
+    "stock": true,
+    "destacado": true,
+    "img": ""
+  },
+  {
+    "id": "p7",
+    "nombre": "Manzana roja",
+    "categoria": "Frutas",
+    "unidad": "kg",
+    "precio": 1600,
+    "stock": true,
+    "destacado": false,
+    "img": ""
+  },
+  {
+    "id": "p8",
+    "nombre": "Naranja",
+    "categoria": "Frutas",
+    "unidad": "kg",
+    "precio": 1100,
+    "stock": false,
+    "destacado": false,
+    "img": ""
+  },
+  {
+    "id": "p9",
+    "nombre": "Huevos (docena)",
+    "categoria": "Almacén",
+    "unidad": "unidad",
+    "precio": 3200,
+    "stock": true,
+    "destacado": true,
+    "img": ""
+  },
+  {
+    "id": "p10",
+    "nombre": "Limón",
+    "categoria": "Frutas",
+    "unidad": "kg",
+    "precio": 1400,
+    "stock": true,
+    "destacado": false,
+    "img": ""
+  }
+]
