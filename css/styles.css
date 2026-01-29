@@ -776,3 +776,35 @@ img{max-width:100%;display:block}
     font-size: 12px !important;
   }
 }
+
+
+/* === V6 Mobile Width Fix (use full viewport) === */
+@media (max-width: 520px){
+  html, body { width: 100%; }
+
+  /* Make wrappers truly full width */
+  .container{
+    width: 100% !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+
+  /* Some builds use "max" wrappers */
+  [class*="container"], [class*="wrap"], [class*="wrapper"]{
+    max-width: none !important;
+  }
+
+  /* Ensure cards fill the available width */
+  .controls > *, .grid > *{
+    width: 100% !important;
+  }
+
+  /* Reduce extra outer paddings if present */
+  main, section{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
