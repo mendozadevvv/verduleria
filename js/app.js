@@ -466,6 +466,8 @@
       if (!mobileBar) return;
       const isMobile = window.matchMedia("(max-width: 780px)").matches;
       mobileBar.hidden = !isMobile;
+      // Evita que la barra móvil tape el contenido al final
+      document.body.classList.toggle("has-mobilebar", isMobile);
     };
     syncMobileBar();
     window.addEventListener("resize", syncMobileBar);
