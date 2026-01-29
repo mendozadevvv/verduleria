@@ -808,3 +808,28 @@ img{max-width:100%;display:block}
     padding-right: 0 !important;
   }
 }
+
+
+/* =========================================================
+   PC V6 — Full width + compact no-image like mobile
+   ========================================================= */
+@media (min-width: 900px){
+  body.view-pc .container{
+    max-width: none !important;
+    width: min(1400px, 100%) !important;
+    padding-left: 28px !important;
+    padding-right: 28px !important;
+  }
+  /* Make catalog grid feel wider */
+  body.view-pc .grid{
+    gap: 18px !important;
+  }
+}
+
+/* Compact no-image placeholder (works for svg or div placeholder) */
+body.view-pc .card-top{
+  height: 170px !important;
+}
+body.view-pc .card-top img{
+  object-fit: cover;
+}

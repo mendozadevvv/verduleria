@@ -126,7 +126,7 @@
   }
 
   function productCard(p){
-    const img = p.img ? p.img : "img/no-image.svg";
+    const img = p.img ? p.img : "../assets/../assets/img/no-image.svg";
     const unitLabel = p.unidad === "kg" ? "kg" : "u./atado";
     const stockBadge = p.stock ? `<span class="badge ok">En stock</span>` : `<span class="badge off">Sin stock</span>`;
     const tags = [
