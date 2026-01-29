@@ -684,3 +684,37 @@ img{max-width:100%;display:block}
     padding-top: 8px;
   }
 }
+
+
+/* === MOBILE FIX: compact product cards === */
+@media (max-width: 520px){
+  .grid .card,
+  .grid .product-card{
+    padding: 10px !important;
+  }
+
+  .grid .card .media,
+  .grid .product-card .media,
+  .grid .card .image,
+  .grid .product-card .image{
+    aspect-ratio: 4 / 3 !important;
+    height: auto !important;
+    min-height: 120px !important;
+    max-height: 160px !important;
+  }
+
+  .grid .placeholder,
+  .grid .no-image{
+    padding: 10px !important;
+    font-size: 12px !important;
+    line-height: 1.3;
+  }
+
+  .grid .actions{
+    margin-top: 8px !important;
+  }
+
+  .grid .qty{
+    margin: 6px 0 !important;
+  }
+}
