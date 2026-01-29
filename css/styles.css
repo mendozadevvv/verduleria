@@ -718,3 +718,61 @@ img{max-width:100%;display:block}
     margin: 6px 0 !important;
   }
 }
+
+
+/* === V5 Mobile Tight + Full Width === */
+@media (max-width: 520px){
+  /* Full-width layout (avoid centered narrow column) */
+  .container, .wrap, .page, main, .section, .catalogo, .catalogo-section{
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  body{ overflow-x: hidden; }
+
+  /* Controls block tighter */
+  .controls{ gap: 10px !important; }
+  .controls .card{ padding: 12px !important; }
+
+  /* Product cards tighter + lower media */
+  .grid .card, .grid .product-card{
+    padding: 10px !important;
+    border-radius: 16px !important;
+  }
+  .grid .badge, .grid .pill{
+    font-size: 12px !important;
+    padding: 6px 10px !important;
+  }
+  .grid .card .media,
+  .grid .product-card .media,
+  .grid .card .image,
+  .grid .product-card .image{
+    aspect-ratio: 4 / 3 !important;
+    min-height: 96px !important;
+    max-height: 130px !important;
+  }
+  .grid .placeholder, .grid .no-image{
+    padding: 10px !important;
+    font-size: 12px !important;
+  }
+
+  /* Qty + button smaller */
+  .grid .qty{
+    margin: 8px 0 !important;
+    padding: 10px !important;
+    border-radius: 999px !important;
+  }
+  .grid .qty button{
+    width: 36px !important;
+    height: 36px !important;
+  }
+  .grid .btn, .grid button.primary, .grid .add-btn{
+    height: 44px !important;
+    border-radius: 999px !important;
+    font-weight: 700 !important;
+  }
+
+  /* Small meta text */
+  .grid .meta, .grid small, .grid .muted{
+    font-size: 12px !important;
+  }
+}
