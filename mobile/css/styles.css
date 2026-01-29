@@ -808,3 +808,102 @@ img{max-width:100%;display:block}
     padding-right: 0 !important;
   }
 }
+
+
+/* === Mobile Pro V2: full width + compact no-image + inline actions === */
+:root{
+  --mobile-pad: 14px;
+}
+
+body.view-mobile .container{
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding-left: var(--mobile-pad);
+  padding-right: var(--mobile-pad);
+}
+
+@media (max-width: 520px){
+  body.view-mobile .container{
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding-left: var(--mobile-pad) !important;
+    padding-right: var(--mobile-pad) !important;
+  }
+
+  /* Make cards span full width */
+  body.view-mobile .controls > *,
+  body.view-mobile .grid > *{
+    width: 100% !important;
+  }
+
+  /* Compact media */
+  body.view-mobile .grid .card .media,
+  body.view-mobile .grid .product-card .media,
+  body.view-mobile .grid .card .image,
+  body.view-mobile .grid .product-card .image{
+    aspect-ratio: 16 / 10 !important;
+    min-height: 88px !important;
+    max-height: 118px !important;
+  }
+
+  /* Compact "no image" placeholder */
+  body.view-mobile .grid .placeholder,
+  body.view-mobile .grid .no-image{
+    display: grid !important;
+    grid-template-columns: 28px 1fr !important;
+    gap: 10px !important;
+    align-items: center !important;
+    padding: 10px 12px !important;
+    font-size: 12px !important;
+    line-height: 1.25 !important;
+  }
+  body.view-mobile .grid .placeholder::before,
+  body.view-mobile .grid .no-image::before{
+    content: "🥬";
+    font-size: 20px;
+    line-height: 1;
+  }
+  /* Hide big decorative circles if they exist inside placeholder */
+  body.view-mobile .grid .placeholder svg,
+  body.view-mobile .grid .placeholder .decor,
+  body.view-mobile .grid .no-image svg,
+  body.view-mobile .grid .no-image .decor{
+    display: none !important;
+  }
+
+  /* Inline actions: price + button in one row when possible */
+  body.view-mobile .grid .actions{
+    display: grid !important;
+    grid-template-columns: 1fr auto !important;
+    gap: 10px !important;
+    align-items: center !important;
+    margin-top: 10px !important;
+  }
+  body.view-mobile .grid .actions .price,
+  body.view-mobile .grid .price{
+    font-size: 16px !important;
+    font-weight: 800 !important;
+  }
+  body.view-mobile .grid .actions .btn,
+  body.view-mobile .grid .actions button,
+  body.view-mobile .grid .btn,
+  body.view-mobile .grid button.primary,
+  body.view-mobile .grid .add-btn{
+    height: 42px !important;
+    padding: 0 16px !important;
+    border-radius: 999px !important;
+    white-space: nowrap;
+  }
+
+  /* Tighter qty */
+  body.view-mobile .grid .qty{
+    margin: 8px 0 6px !important;
+    padding: 8px !important;
+  }
+  body.view-mobile .grid .qty button{
+    width: 34px !important;
+    height: 34px !important;
+  }
+}
