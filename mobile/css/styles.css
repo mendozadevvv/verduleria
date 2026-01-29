@@ -1020,3 +1020,123 @@ body.view-mobile .container{
     font-weight:900 !important;
   }
 }
+
+
+/* =========================================================
+   MOBILE V5 — "APP LIST" LAYOUT (fix look: no giant cards)
+   - product cards become horizontal list items
+   - smaller media, less empty space, more products per screen
+   ========================================================= */
+@media (max-width: 520px){
+  body.view-mobile{
+    padding:0 !important;
+    display:block !important;
+  }
+
+  /* container uses full width but keeps small gutter */
+  body.view-mobile .container{
+    padding-left:12px !important;
+    padding-right:12px !important;
+  }
+
+  /* Product card -> list row */
+  body.view-mobile .grid .card{
+    display:grid !important;
+    grid-template-columns: 96px 1fr !important;
+    gap:12px !important;
+    padding:12px !important;
+    border-radius:16px !important;
+    box-shadow: 0 10px 20px rgba(0,0,0,.06) !important;
+    background: rgba(255,255,255,.96) !important;
+  }
+
+  body.view-mobile .grid .card-top{
+    height:auto !important;
+    aspect-ratio: 1 / 1 !important;
+    border-radius:14px !important;
+    overflow:hidden !important;
+    background: rgba(46,204,113,.08) !important;
+  }
+  body.view-mobile .grid .card-top img{
+    width:100% !important;
+    height:100% !important;
+    object-fit: cover !important;
+    display:block !important;
+  }
+
+  /* Badges smaller and not stacked */
+  body.view-mobile .grid .badge{
+    padding:6px 9px !important;
+    font-size:12px !important;
+    top:8px !important;
+    left:8px !important;
+  }
+  body.view-mobile .grid .badge.tag{
+    right:8px !important;
+    left:auto !important;
+    top:8px !important;
+  }
+
+  /* Body spacing */
+  body.view-mobile .grid .card-body{
+    padding:0 !important;
+    gap:6px !important;
+  }
+  body.view-mobile .grid .card-title{
+    align-items:start !important;
+    gap:10px !important;
+  }
+  body.view-mobile .grid .h3{
+    font-size:1rem !important;
+    line-height:1.15 !important;
+    margin:0 !important;
+  }
+  body.view-mobile .grid .price{
+    font-size:1rem !important;
+    font-weight:900 !important;
+  }
+  body.view-mobile .grid .unit{
+    font-size:.78rem !important;
+  }
+  body.view-mobile .grid .meta{
+    font-size:.78rem !important;
+    gap:8px !important;
+    flex-wrap:wrap;
+  }
+
+  /* Actions: qty + add in one row */
+  body.view-mobile .grid .card-actions{
+    display:grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap:10px !important;
+    align-items:center !important;
+    margin-top:6px !important;
+  }
+  body.view-mobile .grid .qty{
+    margin:0 !important;
+    padding:6px 8px !important;
+    border-radius:999px !important;
+  }
+  body.view-mobile .grid .qty button{
+    width:30px !important;
+    height:30px !important;
+  }
+  body.view-mobile .grid .qty-value{
+    min-width:44px !important;
+    font-weight:800 !important;
+  }
+  body.view-mobile .grid .btn-primary,
+  body.view-mobile .grid .add-btn,
+  body.view-mobile .grid button.primary{
+    height:40px !important;
+    padding:0 12px !important;
+    border-radius:999px !important;
+    font-weight:900 !important;
+  }
+
+  /* Muted line smaller */
+  body.view-mobile .grid .muted{
+    font-size:.78rem !important;
+    margin-top:2px !important;
+  }
+}
