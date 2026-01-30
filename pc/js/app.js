@@ -1,4 +1,20 @@
-/* =========================================================
+/
+
+  function syncOnlyChips(){
+    if (!elOnlyChips || !elOnlyChips.length) return;
+    elOnlyChips.forEach(btn=>{
+      const v = btn.getAttribute("data-only");
+      btn.classList.toggle("is-active", v===state.only);
+      btn.setAttribute("aria-pressed", v===state.only ? "true":"false");
+    });
+  }
+  function setOnly(v){
+    state.only = v || "all";
+    saveUI();
+    syncOnlyChips();
+    render();
+  }
+* =========================================================
    Verdulería Pack — app.js (sin librerías)
    - Catálogo desde data/productos.json
    - Carrito liviano en localStorage
@@ -27,7 +43,7 @@
   const elGrid = $("#gridProducts");
   const elQ = $("#q");
   const elCat = $("#cat");
-  const elOnly = $("#only");
+  const elOnlyChips = document.querySelectorAll('[data-only]');
   const btnClear = $("#btnClear");
 
   const btnOpenCart = $("#btnOpenCart");
@@ -126,105 +142,43 @@
   }
 
   function productCard(p){
-    const img = p.img ? p.img : "../assets/../assets/img/no-image.svg";
-    const unitLabel = p.unidad === "kg" ? "kg" : "u./atado";
-    const stockBadge = p.stock ? `<span class="badge ok">En stock</span>` : `<span class="badge off">Sin stock</span>`;
-    const tags = [
-      p.destacado ? `<span class="badge tag best">★ Destacado</span>` : "",
-      p.oferta ? `<span class="badge tag hot">🔥 Oferta</span>` : "",
-      p.nuevo ? `<span class="badge tag new">🆕 Nuevo</span>` : "",
-      p.mas_vendido ? `<span class="badge tag best">⭐ Más vendido</span>` : "",
-      (p.stock_bajo && p.stock && Number.isFinite(p.stock_bajo)) ? `<span class="badge tag sale">⚠️ Stock bajo</span>` : ""
-    ].filter(Boolean);
+    const img = p.img ? p.img : "../assets/img/no-image.svg";
+    const unitLabel = (p.unidad === "kg") ? "kg" : "u./atado";
+    const hasOffer = (p.oferta && Number(p.precio_oferta||0) > 0);
+    const price = hasOffer ? Number(p.precio_oferta||0) : Number(p.precio||0);
+    const badge = hasOffer ? `<span class="pill pill-hot">Oferta</span>` : (p.destacado ? `<span class="pill">Destacado</span>` : "");
+    const stockDot = p.stock ? `<span class="dot ok" title="En stock"></span>` : `<span class="dot off" title="Sin stock"></span>`;
 
-    const showOffer = p.oferta && Number.isFinite(p.precio_oferta) && p.precio_oferta > 0 && p.precio_oferta < p.precio;
-    const priceHtml = showOffer
-      ? `<div class="price-row"><div class="strike">${moneyARS(p.precio)}</div><div class="price">${moneyARS(p.precio_oferta)}</div></div>`
-      : `<div class="price">${moneyARS(p.precio)}</div>`;
-    const inCartQty = cart[p.id]?.qty || 0;
-    const isNoImg = (img || "").includes("no-image");
     return `
-      <article class="card" data-id="${escapeHtml(p.id)}">
-        <div class="card-top">
-          <img src="${escapeHtml(img)}" alt="${escapeHtml(p.nombre)}" loading="lazy" />
-          ${stockBadge}
-          ${tags.map((t, i)=> t.replace('class="badge tag', `class=\"badge tag\" style=\"top:${12 + (i*40)}px\"`)).join("")}
-        </div>
-        <div class="card-body">
-          <div class="card-title">
-            <h3 class="h3">${escapeHtml(p.nombre)}</h3>
-            <div style="text-align:right">
-              ${priceHtml}
-              <div class="unit">por ${unitLabel}</div>
-            </div>
+      <article class="card ${p.stock ? "" : "is-off"}" data-id="${esc(p.id)}">
+        <div class="card-media">
+          <img src="${esc(img)}" alt="${esc(p.nombre)}" loading="lazy" />
+          <div class="card-badges">
+            ${stockDot}
+            ${badge}
           </div>
+        </div>
 
-          <div class="meta">
-            <span>• ${escapeHtml(p.categoria)}</span>
-            <span>• ${p.unidad === "kg" ? "Se pesa" : "Por unidad/atado"}</span>
+        <div class="card-body">
+          <div class="card-top">
+            <h3 class="card-title">${esc(p.nombre)}</h3>
+            <div class="card-price">
+              <span class="price">$${money(price)}</span>
+              <span class="unit">/ ${unitLabel}</span>
+            </div>
           </div>
 
           <div class="card-actions">
-            <div class="qty" aria-label="Cantidad">
-              <button type="button" class="qty-minus" ${p.stock ? "" : "disabled"} aria-label="Restar">−</button>
-              <span class="qty-value">${inCartQty ? qtyFormat(inCartQty, p.unidad) : "—"}</span>
-              <button type="button" class="qty-plus" ${p.stock ? "" : "disabled"} aria-label="Sumar">+</button>
+            <div class="qty">
+              <button class="qty-btn" data-act="dec" type="button" aria-label="Quitar">−</button>
+              <input class="qty-inp" inputmode="decimal" pattern="[0-9.,]*" value="${money(cartQty(p.id), false)}" aria-label="Cantidad" />
+              <button class="qty-btn" data-act="inc" type="button" aria-label="Agregar">+</button>
             </div>
-
-            <button class="btn btn-primary btn-add" type="button" ${p.stock ? "" : "disabled"}>
-              ${"Agregar"}
-            </button>
+            <button class="btn btn-primary btn-add" data-act="add" type="button">Agregar</button>
           </div>
-
-          <div class="muted" style="font-size:.92rem">${p.stock ? (p.oferta ? "Aprovechá la oferta." : "") : ""}</div>
         </div>
       </article>
     `;
-  }
-
-  function wireProductButtons(list){
-    for (const p of list){
-      const card = elGrid.querySelector(`article[data-id="${CSS.escape(p.id)}"]`);
-      if (!card) continue;
-      const minus = card.querySelector(".qty-minus");
-      const plus = card.querySelector(".qty-plus");
-      const add = card.querySelector(".btn-add");
-      const value = card.querySelector(".qty-value");
-      const step = qtyStepFor(p.unidad);
-      const min = qtyMinFor(p.unidad);
-
-      function setQty(q){
-        if (q <= 0){ delete cart[p.id]; value.textContent="—"; add.textContent="Agregar"; }
-        else { cart[p.id] = { qty: q }; value.textContent=qtyFormat(q,p.unidad); add.textContent="Agregar"; }
-        saveCart(); updateCartUI();
-      }
-
-      minus?.addEventListener("click", ()=>{
-        const curr = cart[p.id]?.qty || 0;
-        const next = p.unidad==="kg" ? Math.max(0, +(curr-step).toFixed(2)) : Math.max(0, Math.round(curr-step));
-        if (next>0 && next<min) setQty(min); else setQty(next);
-      });
-      plus?.addEventListener("click", ()=>{
-        const curr = cart[p.id]?.qty || 0;
-        const next = p.unidad==="kg" ? +(curr+step).toFixed(2) : Math.round(curr+step);
-        setQty(next<min ? min : next);
-      });
-      add?.addEventListener("click", ()=>{
-        const curr = cart[p.id]?.qty || 0;
-        if (!curr) setQty(min); else setQty(curr);
-        openCart();
-      });
-    }
-  }
-
-  function render(){
-    const list = filteredProducts();
-    if (!list.length){
-      elGrid.innerHTML = `<div class="notice" style="grid-column:1/-1"><div class="notice-title">No encontramos resultados</div><div class="notice-body">Probá otra búsqueda o limpiá filtros.</div></div>`;
-      return;
-    }
-    elGrid.innerHTML = list.map(productCard).join("");
-    wireProductButtons(list);
   }
 
   function renderEmptyState(msg){
@@ -247,8 +201,7 @@
       // reset UI controls if exist
       try{ elQ.value=""; }catch(e){}
       try{ elCat.value="Todas"; }catch(e){}
-      try{ elOnly.value="todo"; }catch(e){}
-      render();
+            render();
     });
   }
 
@@ -501,7 +454,7 @@ function wireCartButtons(){
   async function init(){
     yearEl.textContent = String(new Date().getFullYear());
     loadUI(); loadCart();
-    elQ.value = state.q; elOnly.value = state.only;
+    elQ.value = state.q; syncOnlyChips();
 
     const syncMobileBar = ()=>{
       if (!mobileBar) return;
@@ -528,13 +481,21 @@ function wireCartButtons(){
 
     btnClear.addEventListener("click", ()=>{
       state = { q:"", cat:"all", only:"all" };
-      elQ.value=""; elOnly.value="all"; elCat.value="all";
+      elQ.value=""; setOnly("all"); elCat.value="all";
       saveUI(); render();
     });
 
     elQ.addEventListener("input", ()=>{ state.q = elQ.value; saveUI(); render(); });
-    elOnly.addEventListener("change", ()=>{ state.only = elOnly.value; saveUI(); render(); });
-    elCat.addEventListener("change", ()=>{ state.cat = elCat.value; saveUI(); render(); });
+    elCat.addEventListener("change", ()=>{ state.cat = elCat.value; saveUI();
+
+  if (elOnlyChips && elOnlyChips.length){
+    elOnlyChips.forEach(btn=>{
+      btn.addEventListener("click", ()=>{
+        setOnly(btn.getAttribute("data-only") || "all");
+      });
+    });
+  }
+ render(); });
 
     // First paint: skeleton + cart counters
     renderSkeleton();
@@ -570,6 +531,7 @@ function wireCartButtons(){
       ensureCategories();
       if (!productos.length){ renderEmptyState("Catálogo vacío"); return; }
       elCat.value = state.cat;
+      syncOnlyChips();
       render();
       updateCartUI();
 

@@ -25,11 +25,9 @@
       </a>
 
       <nav class="navlinks" aria-label="Secciones">
-        <a href="#catalogo">Catálogo</a>
+        <a href="#catalogo">Productos</a>
         <a href="#combos">Combos</a>
-        <a href="#beneficios">Beneficios</a>
         <a href="#como-funciona">Cómo funciona</a>
-        <a href="#faq">Preguntas</a>
       </nav>
 
       <div class="nav-actions">
@@ -110,28 +108,20 @@
             </select>
           </label>
 
-          <label class="control">
+          
+          <div class="control chips-control">
             <span class="control-label">Mostrar</span>
-            <select id="only" class="input">
-              <option value="all">Todo</option>
-              <option value="destacados">Destacados</option>
-              <option value="ofertas">Ofertas</option>
-              <option value="mas-vendidos">Más vendidos</option>
-              <option value="con-stock">Solo con stock</option>
-            </select>
-          </label>
-
-          <button class="btn btn-ghost" id="btnClear" type="button">Limpiar</button>
+            <div class="chips" id="onlyChips" role="group" aria-label="Filtros">
+              <button class="chip is-active" data-only="all" type="button">Todo</button>
+              <button class="chip" data-only="destacados" type="button">Destacados</button>
+              <button class="chip" data-only="ofertas" type="button">Ofertas</button>
+              <button class="chip" data-only="con-stock" type="button">Con stock</button>
+            </div>
+          </div>
+<button class="btn btn-ghost" id="btnClear" type="button">Limpiar</button>
         </div>
 
         <div class="grid" id="gridProducts" aria-live="polite"></div>
-
-        <div class="notice">
-          <div class="notice-title">🧠 Tip</div>
-          <div class="notice-body">
-            Si después querés que el Admin guarde directo al servidor (sin exportar/importar), se conecta fácil a PHP + MySQL.
-          </div>
-        </div>
       </div>
     </section>
 
@@ -241,8 +231,8 @@
             <p>Sí. Abajo del catálogo vas a ver <strong>combos</strong> listos para agregar al pedido.</p>
           </details>
           <details class="faq-item">
-            <summary>¿Cómo actualizo productos?</summary>
-            <p>Entrás a <strong>Admin</strong>, editás y <strong>exportás</strong> el JSON para reemplazar <code>data/productos.json</code>.</p>
+            <summary>¿Cómo se actualizan los precios?</summary>
+            <p>Desde el <strong>Admin</strong> (panel de la verdulería). Se actualiza en minutos.</p>
           </details>
         </div>
       </div>
