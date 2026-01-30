@@ -1,0 +1,16 @@
+
+/* HARD FIX: ensure fixed is viewport-based */
+html, body {
+  transform: none !important;
+}
+
+.category-bar{
+  position: fixed !important;
+  top:72px !important;
+  left:50% !important;
+  transform: translateX(-50%) !important;
+  width:min(1400px,92%) !important;
+  z-index:10000 !important;
+  background:#fff;
+}
+.category-spacer{height:90px;}

@@ -1344,3 +1344,26 @@ body.view-mobile .container{
 .card.is-featured .card-body{padding:16px}
 .card.is-featured .badge.ok{background:rgba(255,255,255,.94)}
 
+
+
+
+/* === CATEGORY CONTROLS: FIXED ALWAYS (PC+MOBILE) === */
+#controlsBar{
+  position:fixed !important;
+  top:82px; /* header (70px) + gap */
+  left:50%;
+  transform:translateX(-50%);
+  width:min(1400px, calc(100% - 48px));
+  z-index:9999;
+}
+#controlsSpacer{
+  display:block;
+  height:120px; /* reserve space for fixed controls */
+}
+@media (max-width: 768px){
+  #controlsBar{
+    top:74px;
+    width:calc(100% - 24px);
+  }
+  #controlsSpacer{height:112px}
+}
