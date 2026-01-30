@@ -1,4 +1,4 @@
-/
+//
 
   function syncOnlyChips(){
     if (!elOnlyChips || !elOnlyChips.length) return;
