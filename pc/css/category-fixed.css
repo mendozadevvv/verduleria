@@ -1,0 +1,13 @@
+
+/* CATEGORY BAR FIXED ALWAYS */
+.category-bar{
+  position: fixed !important;
+  top:72px;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(1400px,92%);
+  z-index:9999;
+  background:#fff;
+  box-shadow:0 8px 24px rgba(0,0,0,.08);
+}
+.category-spacer{height:90px;}
