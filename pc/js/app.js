@@ -118,6 +118,8 @@
     try { return n.toLocaleString("es-AR", { style: "currency", currency: "ARS", maximumFractionDigits: 0 }); }
     catch { return "$" + Math.round(n); }
   
+  }
+
   function categoryEmoji(cat){
     const c = String(cat||"").toLowerCase();
     if (c.includes("frut")) return "🍎";
@@ -128,7 +130,6 @@
     return "🥗";
   }
 
-}
 
   function loadCart(){ try { cart = JSON.parse(localStorage.getItem(CART_KEY) || "{}") || {}; } catch { cart = {}; } }
   function saveCart(){ localStorage.setItem(CART_KEY, JSON.stringify(cart)); }
