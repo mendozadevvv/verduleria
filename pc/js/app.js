@@ -142,7 +142,7 @@
       ? `<div class="price-row"><div class="strike">${moneyARS(p.precio)}</div><div class="price">${moneyARS(p.precio_oferta)}</div></div>`
       : `<div class="price">${moneyARS(p.precio)}</div>`;
     const inCartQty = cart[p.id]?.qty || 0;
-    const isNoImg = (img || "").includes("no-image.svg");
+    const isNoImg = (img || "").includes("no-image");
     return `
       <article class="card" data-id="${escapeHtml(p.id)}">
         <div class="card-top ${isNoImg ? "noimg" : ""}">
