@@ -981,3 +981,15 @@ body.view-pc .card-top{ z-index:1; }
 @media (min-width:1400px){
   .grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
+
+
+/* === PC PRO REFINEMENTS v13 === */
+.product-image{height:160px}
+.product-name{font-size:16px;font-weight:600;margin-top:10px}
+.product-price{font-size:22px;font-weight:700;margin:6px 0 12px}
+.btn-agregar{margin-top:12px}
+.btn-agregar:hover{transform:translateY(-1px)}
+.product-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 20px 40px rgba(0,0,0,.08);
+}
