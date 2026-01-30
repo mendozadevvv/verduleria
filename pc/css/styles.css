@@ -875,3 +875,28 @@ body.view-pc .unit{ color: var(--muted, #5b6762) !important; }
 /* If some layer overlaps text, bring body above */
 body.view-pc .card-body{ position:relative; z-index:2; }
 body.view-pc .card-top{ z-index:1; }
+
+
+/* =========================================================
+   V9 PC layout fix
+   - ensure card-body is BELOW image (no overlay)
+   - restore proper separation for title/price/meta
+   ========================================================= */
+@media (min-width: 900px){
+  body.view-pc .card{
+    display:flex !important;
+    flex-direction:column !important;
+  }
+  body.view-pc .card-top{
+    flex: 0 0 160px !important;
+    height: 160px !important;
+    z-index: 0 !important;
+  }
+  body.view-pc .card-body{
+    position: static !important;
+    z-index: auto !important;
+    background: rgba(255,255,255,.92) !important;
+    border-top: 1px solid rgba(0,0,0,.06) !important;
+    padding-top: 14px !important;
+  }
+}
