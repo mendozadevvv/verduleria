@@ -1,19 +1,3 @@
-//
-
-  function syncOnlyChips(){
-    if (!elOnlyChips || !elOnlyChips.length) return;
-    elOnlyChips.forEach(btn=>{
-      const v = btn.getAttribute("data-only");
-      btn.classList.toggle("is-active", v===state.only);
-      btn.setAttribute("aria-pressed", v===state.only ? "true":"false");
-    });
-  }
-  function setOnly(v){
-    state.only = v || "all";
-    saveUI();
-    syncOnlyChips();
-    render();
-  }
 /* =========================================================
    Verdulería Pack — app.js (sin librerías)
    - Catálogo desde data/productos.json
@@ -88,6 +72,21 @@
 
   let productos = [];
   let state = { q: "", cat: "all", only: "all" };
+  function syncOnlyChips(){
+    if (!elOnlyChips || !elOnlyChips.length) return;
+    elOnlyChips.forEach(btn=>{
+      const v = btn.getAttribute("data-only");
+      btn.classList.toggle("is-active", v===state.only);
+      btn.setAttribute("aria-pressed", v===state.only ? "true":"false");
+    });
+  }
+  function setOnly(v){
+    state.only = v || "all";
+    saveUI();
+    syncOnlyChips();
+    render();
+  }
+
   let cart = {};
 
   function moneyARS(n) {
