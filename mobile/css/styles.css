@@ -1348,22 +1348,54 @@ body.view-mobile .container{
 
 
 /* === CATEGORY CONTROLS: FIXED ALWAYS (PC+MOBILE) === */
+  #controlsSpacer{height:112px}
+}
+
+
+/* === FIXED CATEGORY BAR (always visible, compact) === */
 #controlsBar{
   position:fixed !important;
-  top:82px; /* header (70px) + gap */
+  top:12px;
   left:50%;
   transform:translateX(-50%);
-  width:min(1400px, calc(100% - 48px));
+  width:min(1400px, calc(100% - 24px));
   z-index:9999;
+  background:rgba(255,255,255,.92);
+  border:1px solid rgba(0,0,0,.08);
+  border-radius:18px;
+  box-shadow:0 12px 34px rgba(0,0,0,.10);
+  backdrop-filter:saturate(140%) blur(10px);
 }
 #controlsSpacer{
   display:block;
-  height:120px; /* reserve space for fixed controls */
+  height:88px; /* reserve space so products don't go under the fixed bar */
 }
+#controlsBar.controls-simple{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:10px 14px;
+}
+#controlsBar.controls-simple .control{
+  flex-direction:row;
+  align-items:center;
+  gap:10px;
+}
+#controlsBar.controls-simple .control-label{
+  margin:0;
+  font-size:.95rem;
+  color:var(--muted);
+  font-weight:800;
+}
+#controlsBar.controls-simple .input{
+  padding:10px 12px;
+  border-radius:14px;
+  min-width:220px;
+}
+
 @media (max-width: 768px){
-  #controlsBar{
-    top:74px;
-    width:calc(100% - 24px);
-  }
-  #controlsSpacer{height:112px}
+  #controlsBar{top:10px; width:calc(100% - 16px); border-radius:16px}
+  #controlsSpacer{height:82px}
+  #controlsBar.controls-simple .input{min-width:160px}
 }
+

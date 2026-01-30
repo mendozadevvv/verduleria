@@ -1,0 +1,23 @@
+
+/* FINAL FIX: fixed category + internal scroll */
+html, body { height:100%; }
+body { overflow:hidden; }
+
+#controlsBar{
+  position: fixed !important;
+  top: 72px;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(1400px,92%);
+  z-index:9999;
+  background:#fff;
+  box-shadow:0 8px 24px rgba(0,0,0,.08);
+}
+
+#catalogScroll{
+  position: absolute;
+  top: 72px;
+  left:0; right:0; bottom:0;
+  overflow-y:auto;
+  padding-top:110px;
+}
