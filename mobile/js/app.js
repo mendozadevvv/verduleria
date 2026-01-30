@@ -175,7 +175,8 @@
             </button>
           </div>
 
-          <div class="muted" style="font-size:.92rem">${p.stock ? (p.oferta ? "Aprovechá la oferta." : "") : "Volvé a mirar más tarde."}</div>
+          <div class="muted" style="font-size:.92rem">${p.stock ? (p.oferta ? "Aprovechá la oferta." : "") : "
+"}</div>
         </div>
       </article>
     `;
