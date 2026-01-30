@@ -900,3 +900,84 @@ body.view-pc .card-top{ z-index:1; }
     padding-top: 14px !important;
   }
 }
+
+/* === PC AIR UPGRADE (v12) === */
+:root{ --max:1320px; }
+
+.container{ padding: 0 24px; }
+.section{ padding: 58px 0; }
+
+.controls{
+  padding: 16px;
+  gap: 12px;
+  border-radius: 20px;
+}
+
+.grid{
+  margin-top: 24px;
+  gap: 22px;
+}
+
+.card{
+  border-radius: 20px;
+  box-shadow: 0 12px 30px rgba(0,0,0,.06);
+}
+
+.card-top{
+  height: 180px;
+  border-radius: 16px;
+}
+
+.card-body{
+  padding: 16px;
+  gap: 12px;
+}
+
+.h3{ font-size: 1.12rem; }
+
+.price{
+  font-size: 1.35rem;
+  font-weight: 950;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+.unit{ color: var(--muted); font-weight: 750; font-size: .9rem; margin-top: 4px; }
+
+.badge{
+  top: 16px;
+  left: 16px;
+  padding: 6px 10px;
+  font-size: 12px;
+}
+
+.card-actions{ gap: 12px; }
+
+.qty{
+  padding: 9px 12px;
+  gap: 10px;
+  background: rgba(0,0,0,.035);
+}
+
+.card-actions .btn{
+  height: 44px;
+  border-radius: 999px;
+  font-weight: 800;
+}
+
+/* Desktop: more breathing room + better columns */
+@media (min-width:780px){
+  .container{ padding: 0 40px; }
+  .grid{ gap: 26px; }
+  .card-top{ height: 190px; }
+}
+
+@media (min-width:1100px){
+  .container{ padding: 0 48px; }
+  .grid{ gap: 28px; }
+  .card-top{ height: 200px; }
+}
+
+/* Ultra-wide: fewer columns for premium look */
+@media (min-width:1400px){
+  .grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
