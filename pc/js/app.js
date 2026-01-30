@@ -145,7 +145,7 @@
     const isNoImg = (img || "").includes("no-image");
     return `
       <article class="card" data-id="${escapeHtml(p.id)}">
-        <div class="card-top ${isNoImg ? "noimg" : ""}">
+        <div class="card-top">
           <img src="${escapeHtml(img)}" alt="${escapeHtml(p.nombre)}" loading="lazy" />
           ${stockBadge}
           ${tags.map((t, i)=> t.replace('class="badge tag', `class=\"badge tag\" style=\"top:${12 + (i*40)}px\"`)).join("")}
@@ -258,7 +258,7 @@ function renderSkeleton(){
     elGrid.innerHTML = Array.from({length:n}).map(()=>{
       return `
         <article class="card">
-          <div class="card-top ${isNoImg ? "noimg" : ""}">
+          <div class="card-top">
             <div class="skeleton sk-img"></div>
           </div>
           <div class="card-body">
