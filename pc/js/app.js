@@ -142,9 +142,10 @@
       ? `<div class="price-row"><div class="strike">${moneyARS(p.precio)}</div><div class="price">${moneyARS(p.precio_oferta)}</div></div>`
       : `<div class="price">${moneyARS(p.precio)}</div>`;
     const inCartQty = cart[p.id]?.qty || 0;
+    const isNoImg = (img || "").includes("no-image.svg");
     return `
       <article class="card" data-id="${escapeHtml(p.id)}">
-        <div class="card-top">
+        <div class="card-top ${isNoImg ? "noimg" : ""}">
           <img src="${escapeHtml(img)}" alt="${escapeHtml(p.nombre)}" loading="lazy" />
           ${stockBadge}
           ${tags.map((t, i)=> t.replace('class="badge tag', `class=\"badge tag\" style=\"top:${12 + (i*40)}px\"`)).join("")}
@@ -231,7 +232,7 @@
     elGrid.innerHTML = Array.from({length:n}).map(()=>{
       return `
         <article class="card">
-          <div class="card-top">
+          <div class="card-top ${isNoImg ? "noimg" : ""}">
             <div class="skeleton sk-img"></div>
           </div>
           <div class="card-body">

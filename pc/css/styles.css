@@ -827,9 +827,7 @@ img{max-width:100%;display:block}
 }
 
 /* Compact no-image placeholder (works for svg or div placeholder) */
-body.view-pc .card-top{
-  height: 170px !important;
-}
+body.view-pc .card-top{ height: 140px !important; }
 body.view-pc .card-top img{
   object-fit: cover;
 }
@@ -978,9 +976,7 @@ body.view-pc .card-top{ z-index:1; }
 }
 
 /* Ultra-wide: fewer columns for premium look */
-@media (min-width:1400px){
-  .grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
-}
+@media (min-width:1400px){ .grid{ grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 
 
 /* === PC PRO REFINEMENTS v13 === */
@@ -993,3 +989,20 @@ body.view-pc .card-top{ z-index:1; }
   transform:translateY(-4px);
   box-shadow:0 20px 40px rgba(0,0,0,.08);
 }
+
+/* === V14 PC NO-IMAGE COMPACT (makes catalog not look empty) === */
+body.view-pc .card-top.noimg{
+  height: 110px !important;
+  background: linear-gradient(135deg, rgba(46,204,113,.07), rgba(39,174,96,.04));
+}
+body.view-pc .card-top.noimg img{
+  width: 120px !important;
+  height: 120px !important;
+  object-fit: contain !important;
+  padding: 14px !important;
+  opacity: .9;
+}
+body.view-pc .card-body{ padding: 12px 14px !important; gap: 8px !important; }
+body.view-pc .grid{ gap: 16px !important; }
+/* keep hover subtle */
+body.view-pc .card:hover{ transform: translateY(-3px); box-shadow: 0 18px 38px rgba(0,0,0,.08); }
