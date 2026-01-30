@@ -227,7 +227,33 @@
     wireProductButtons(list);
   }
 
-  function renderSkeleton(){
+  
+  function renderEmptyState(msg){
+    if (!elGrid) return;
+    elGrid.innerHTML = `
+      <div class="notice notice-empty" style="grid-column:1/-1">
+        <div class="notice-title">${msg || "No hay productos para mostrar"}</div>
+        <div class="notice-body">
+          Probá <button class="link-btn" id="btnClearFilters" type="button">limpiar filtros</button>
+          o revisá que exista <code>data/productos.json</code>.
+        </div>
+      </div>`;
+    document.getElementById("btnClearFilters")?.addEventListener("click", ()=>{
+      try{
+        state.q = "";
+        state.cat = "Todas";
+        state.only = "todo";
+        saveUI();
+      }catch(e){}
+      // reset UI controls if exist
+      try{ elQ.value=""; }catch(e){}
+      try{ elCat.value="Todas"; }catch(e){}
+      try{ elOnly.value="todo"; }catch(e){}
+      render();
+    });
+  }
+
+function renderSkeleton(){
     const n = 8;
     elGrid.innerHTML = Array.from({length:n}).map(()=>{
       return `
@@ -544,6 +570,7 @@ function wireCartButtons(){
       if (lastUpdate) lastUpdate.textContent = new Date().toLocaleDateString("es-AR", { year:"numeric", month:"short", day:"2-digit" });
 
       ensureCategories();
+      if (!productos.length){ renderEmptyState("Catálogo vacío"); return; }
       elCat.value = state.cat;
       render();
       updateCartUI();
