@@ -171,7 +171,7 @@
             </div>
 
             <button class="btn btn-primary btn-add" type="button" ${p.stock ? "" : "disabled"}>
-              ${inCartQty ? "Actualizar" : "Agregar"}
+              ${"Agregar"}
             </button>
           </div>
 
