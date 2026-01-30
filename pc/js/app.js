@@ -25,6 +25,8 @@
   const $ = (sel, el = document) => el.querySelector(sel);
 
   const elGrid = $("#gridProducts");
+  const elFeaturedWrap = $("#featuredWrap");
+  const elFeatured = $("#featuredProducts");
   const elQ = $("#q");
   const elCat = $("#cat");
   const elOnly = $("#only");
@@ -115,7 +117,18 @@
   function moneyARS(n) {
     try { return n.toLocaleString("es-AR", { style: "currency", currency: "ARS", maximumFractionDigits: 0 }); }
     catch { return "$" + Math.round(n); }
+  
+  function categoryEmoji(cat){
+    const c = String(cat||"").toLowerCase();
+    if (c.includes("frut")) return "🍎";
+    if (c.includes("verd")) return "🥬";
+    if (c.includes("almac")) return "🛒";
+    if (c.includes("huevo")) return "🥚";
+    if (c.includes("pan")) return "🥖";
+    return "🥗";
   }
+
+}
 
   function loadCart(){ try { cart = JSON.parse(localStorage.getItem(CART_KEY) || "{}") || {}; } catch { cart = {}; } }
   function saveCart(){ localStorage.setItem(CART_KEY, JSON.stringify(cart)); }
@@ -163,7 +176,7 @@
     });
   }
 
-  function productCard(p){
+  function productCard(p, opts={}){
     const img = p.img ? p.img : "../assets/img/no-image.svg";
     const unitLabel = p.unidad === "kg" ? "kg" : "u./atado";
     const stockBadge = p.stock ? `<span class="badge ok">En stock</span>` : `<span class="badge off">Sin stock</span>`;
@@ -182,9 +195,9 @@
     const inCartQty = cart[p.id]?.qty || 0;
     const isNoImg = (img || "").includes("no-image");
     return `
-      <article class="card" data-id="${escapeHtml(p.id)}">
+      <article class="card ${opts.featured ? "is-featured" : ""}" data-id="${escapeHtml(p.id)}">
         <div class="card-top">
-          <img src="${escapeHtml(img)}" alt="${escapeHtml(p.nombre)}" loading="lazy" />
+          ${isNoImg ? `<div class="noimg-wrap"><div class="noimg-badge"><div class="noimg-ico">${categoryEmoji(p.categoria)}</div><div class="noimg-txt">Sin foto</div></div></div>` : `<img src="${escapeHtml(img)}" alt="${escapeHtml(p.nombre)}" loading="lazy" />`}
           ${stockBadge}
           ${tags.map((t, i)=> t.replace('class="badge tag', `class=\"badge tag\" style=\"top:${12 + (i*40)}px\"`)).join("")}
         </div>
@@ -220,9 +233,9 @@
     `;
   }
 
-  function wireProductButtons(list){
+  function wireProductButtons(list, root=elGrid){
     for (const p of list){
-      const card = elGrid.querySelector(`article[data-id="${CSS.escape(p.id)}"]`);
+      const card = root.querySelector(`article[data-id="${CSS.escape(p.id)}"]`);
       if (!card) continue;
       const minus = card.querySelector(".qty-minus");
       const plus = card.querySelector(".qty-plus");
@@ -255,14 +268,53 @@
     }
   }
 
-  function render(){
+  
+  function pickFeatured(all){
+    const ranked = all
+      .filter(p=>p && p.stock)
+      .map(p=>{
+        let score = 0;
+        if (p.destacado) score += 60;
+        if (p.mas_vendido) score += 55;
+        if (p.oferta) score += 40;
+        if (p.nuevo) score += 10;
+        return {p, score};
+      })
+      .filter(x=>x.score>0)
+      .sort((a,b)=>b.score-a.score);
+    const chosen = [];
+    const seen = new Set();
+    for (const x of ranked){
+      if (chosen.length>=3) break;
+      if (seen.has(x.p.id)) continue;
+      chosen.push(x.p);
+      seen.add(x.p.id);
+    }
+    return chosen;
+  }
+
+  function renderFeatured(all){
+    if (!elFeaturedWrap || !elFeatured) return;
+    const feat = pickFeatured(all);
+    if (!feat.length){
+      elFeaturedWrap.hidden = true;
+      elFeatured.innerHTML = "";
+      return;
+    }
+    elFeaturedWrap.hidden = false;
+    elFeatured.innerHTML = feat.map(p=>productCard(p,{featured:true})).join("");
+    wireProductButtons(feat, elFeatured);
+  }
+
+function render(){
     const list = filteredProducts();
+    renderFeatured(list);
     if (!list.length){
       elGrid.innerHTML = `<div class="notice" style="grid-column:1/-1"><div class="notice-title">No encontramos resultados</div><div class="notice-body">Probá otra búsqueda o limpiá filtros.</div></div>`;
       return;
     }
     elGrid.innerHTML = list.map(productCard).join("");
-    wireProductButtons(list);
+    wireProductButtons(list, elGrid);
   }
 
   function renderEmptyState(msg){
@@ -366,7 +418,7 @@ function renderSkeleton(){
   function syncProductCard(id){
     try{
       if (!elGrid) return;
-      const card = elGrid.querySelector(`article[data-id="${CSS.escape(id)}"]`);
+      const card = root.querySelector(`article[data-id="${CSS.escape(id)}"]`);
       if (!card) return;
       const p = productos.find(x=>x.id===id);
       if (!p) return;
