@@ -723,3 +723,35 @@ function wireCartButtons(){
   }
   init();
 })();
+
+
+
+// === FORCE CATEGORY BAR FIXED (never moves) ===
+function forceControlsBarFixed(){
+  const bar = document.getElementById('controlsBar');
+  const spacer = document.getElementById('controlsSpacer');
+  if(!bar) return;
+
+  // Move bar to <body> so it is never trapped by containers/transforms
+  if(bar.parentElement !== document.body){
+    document.body.appendChild(bar);
+  }
+
+  // Calculate top offset under header
+  const header = document.querySelector('.header');
+  const headerH = header ? Math.ceil(header.getBoundingClientRect().height) : 0;
+  const top = headerH + 12; // gap under header
+  bar.style.top = top + 'px';
+
+  bar.classList.add('controls-fixed');
+
+  // Keep layout space where it originally was
+  if(spacer){
+    const h = Math.ceil(bar.getBoundingClientRect().height || 90);
+    spacer.style.height = h + 'px';
+  }
+}
+window.addEventListener('DOMContentLoaded', forceControlsBarFixed);
+window.addEventListener('load', forceControlsBarFixed);
+window.addEventListener('resize', forceControlsBarFixed);
+

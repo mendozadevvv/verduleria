@@ -1399,3 +1399,13 @@ body.view-mobile .container{
   #controlsBar.controls-simple .input{min-width:160px}
 }
 
+
+
+/* Hard guarantee: category bar is fixed to viewport */
+.controls-fixed{
+  position: fixed !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  z-index: 9999 !important;
+}
+
