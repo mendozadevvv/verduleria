@@ -539,7 +539,8 @@ function wireCartButtons(){
   async function init(){
     yearEl.textContent = String(new Date().getFullYear());
     loadUI(); loadCart();
-    elQ.value = state.q; elOnly.value = state.only;
+    if (elQ) elQ.value = state.q;
+    if (elOnly) elOnly.value = state.only;
     buildOnlyChips();
     syncOnlyUI();
 
