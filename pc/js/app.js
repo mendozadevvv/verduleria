@@ -73,25 +73,39 @@
 
   let productos = [];
   let state = { q: "", cat: "all", only: "all" };
-  // --- Only (chips/select) helpers ---
-  function syncOnlyUI(){
-    if (elOnly) elOnly.value = state.only || "all";
-    if (elOnlyChips){
-      const buttons = elOnlyChips.querySelectorAll("[data-only]");
-      buttons.forEach(btn=>{
-        const v = btn.getAttribute("data-only");
-        const active = (v === (state.only || "all"));
-        btn.classList.toggle("is-active", active);
-        btn.setAttribute("aria-pressed", active ? "true" : "false");
-      });
-    }
+
+  function buildOnlyChips(){
+    if (!elOnlyChips || !elOnly) return;
+    // Build from select options
+    const opts = Array.from(elOnly.options || []);
+    elOnlyChips.innerHTML = opts.map(o=>{
+      const v = String(o.value);
+      const t = String(o.textContent || o.label || v);
+      return `<button class="chip" type="button" data-only="${v}">${t}</button>`;
+    }).join("");
+    elOnlyChips.addEventListener("click", (e)=>{
+      const btn = e.target && e.target.closest ? e.target.closest("[data-only]") : null;
+      if (!btn) return;
+      setOnly(btn.getAttribute("data-only") || "all");
+    });
   }
 
-  function setOnly(next){
-    state.only = next || "all";
+  function syncOnlyUI(){
+    // keep select + chips in sync
+    try{ if (elOnly) elOnly.value = state.only; }catch(e){}
+    if (!elOnlyChips) return;
+    const all = elOnlyChips.querySelectorAll("[data-only]");
+    all.forEach(b=>{
+      const v = b.getAttribute("data-only");
+      b.classList.toggle("is-active", v === state.only);
+    });
+  }
+
+  function setOnly(value){
+    state.only = value || "all";
     saveUI();
     syncOnlyUI();
-    if (typeof render === "function") render();
+    render();
   }
 
   let cart = {};
@@ -523,20 +537,8 @@ function wireCartButtons(){
   async function init(){
     yearEl.textContent = String(new Date().getFullYear());
     loadUI(); loadCart();
-    
-    // Bind Only filters (select + chips)
-    if (elOnly){
-      elOnly.addEventListener("change", ()=> setOnly(elOnly.value));
-    }
-    if (elOnlyChips){
-      elOnlyChips.addEventListener("click", (e)=>{
-        const btn = e.target.closest("[data-only]");
-        if (!btn) return;
-        setOnly(btn.getAttribute("data-only"));
-      });
-    }
-elQ.value = state.q;
-    if (elOnly) elOnly.value = state.only;
+    elQ.value = state.q; elOnly.value = state.only;
+    buildOnlyChips();
     syncOnlyUI();
 
     const syncMobileBar = ()=>{
@@ -565,18 +567,11 @@ elQ.value = state.q;
     btnClear.addEventListener("click", ()=>{
       state = { q:"", cat:"all", only:"all" };
       elQ.value=""; elOnly.value="all"; elCat.value="all";
-      saveUI(); render();
+      saveUI(); syncOnlyUI(); render();
     });
 
     elQ.addEventListener("input", ()=>{ state.q = elQ.value; saveUI(); render(); });
-    if (elOnly){
-    elOnly.addEventListener("change", ()=>{
-      state.only = elOnly.value;
-      saveUI();
-      syncOnlyUI();
-      render();
-    });
-  }
+    elOnly.addEventListener("change", ()=>{ setOnly(elOnly.value); });
     elCat.addEventListener("change", ()=>{ state.cat = elCat.value; saveUI(); render(); });
 
     // First paint: skeleton + cart counters
