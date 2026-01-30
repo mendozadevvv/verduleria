@@ -1232,13 +1232,24 @@ body.view-pc .card-body{ gap:9px !important; }
 @media (min-width:980px){
   .controls{
     position: sticky;
-    top: 78px;
+    top: 82px;
     z-index: 5;
     backdrop-filter: blur(10px);
     background: rgba(246,248,247,.68);
     border: 1px solid rgba(0,0,0,.06);
     box-shadow: 0 10px 30px rgba(0,0,0,.06);
   }
+
+  /* When JS toggles fixed mode (user request: "que quede fijo") */
+  .controls.is-fixed{
+    position: fixed;
+    top: 82px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(var(--max), calc(100% - 56px));
+  }
+  .controls-spacer{ display:none; }
+  .controls-spacer.is-active{ display:block; }
 }
 
 /* Featured */

@@ -630,6 +630,33 @@ function wireCartButtons(){
     if (elOnly) elOnly.addEventListener("change", ()=>{ setOnly(elOnly.value); });
     if (elCat) elCat.addEventListener("change", ()=>{ state.cat = elCat.value; saveUI(); render(); });
 
+    // Keep category selector fixed while browsing the catalog (PC request)
+    (function setupFixedControls(){
+      const bar = document.getElementById("controlsBar");
+      const spacer = document.getElementById("controlsSpacer");
+      const section = document.getElementById("catalogo");
+      if (!bar || !spacer || !section) return;
+
+      const TOP = 82; // header(70) + gap
+      const update = ()=>{
+        const rect = section.getBoundingClientRect();
+        const barH = bar.offsetHeight || 0;
+        const shouldFix = (rect.top <= TOP) && (rect.bottom > (TOP + barH + 20));
+        if (shouldFix){
+          bar.classList.add("is-fixed");
+          spacer.classList.add("is-active");
+          spacer.style.height = barH + "px";
+        }else{
+          bar.classList.remove("is-fixed");
+          spacer.classList.remove("is-active");
+          spacer.style.height = "0px";
+        }
+      };
+      window.addEventListener("scroll", update, { passive: true });
+      window.addEventListener("resize", update);
+      setTimeout(update, 60);
+    })();
+
     // First paint: skeleton + cart counters
     renderSkeleton();
     updateCartUI();
