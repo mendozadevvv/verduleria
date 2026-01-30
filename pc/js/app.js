@@ -637,27 +637,46 @@ function wireCartButtons(){
       const section = document.getElementById("catalogo");
       if (!bar || !spacer || !section) return;
 
-      const TOP = 82; // header(70) + gap
+      const header = document.querySelector(".header");
+      const container = section.querySelector(".container") || section;
+
+      const getTop = ()=>{
+        const h = header ? header.offsetHeight : 70;
+        return h + 12; // gap debajo del header
+      };
+
       const update = ()=>{
+        const TOP = getTop();
+        document.documentElement.style.setProperty("--controls-top", TOP + "px");
+
         const rect = section.getBoundingClientRect();
         const barH = bar.offsetHeight || 0;
-        const shouldFix = (rect.top <= TOP) && (rect.bottom > (TOP + barH + 20));
+        const shouldFix = (rect.top <= TOP) && (rect.bottom > (TOP + barH + 24));
+
         if (shouldFix){
+          const cRect = container.getBoundingClientRect();
           bar.classList.add("is-fixed");
           spacer.classList.add("is-active");
           spacer.style.height = barH + "px";
+
+          // Alinear el fixed al ancho/posición del contenedor (evita que quede centrado raro)
+          bar.style.left = cRect.left + "px";
+          bar.style.width = cRect.width + "px";
         }else{
           bar.classList.remove("is-fixed");
           spacer.classList.remove("is-active");
           spacer.style.height = "0px";
+          bar.style.left = "";
+          bar.style.width = "";
         }
       };
+
       window.addEventListener("scroll", update, { passive: true });
       window.addEventListener("resize", update);
-      setTimeout(update, 60);
+      window.addEventListener("load", update);
+      requestAnimationFrame(update);
     })();
-
-    // First paint: skeleton + cart counters
+// First paint: skeleton + cart counters
     renderSkeleton();
     updateCartUI();
 

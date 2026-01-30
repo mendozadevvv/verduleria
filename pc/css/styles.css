@@ -1243,10 +1243,10 @@ body.view-pc .card-body{ gap:9px !important; }
   /* When JS toggles fixed mode (user request: "que quede fijo") */
   .controls.is-fixed{
     position: fixed;
-    top: 82px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: min(var(--max), calc(100% - 56px));
+    top: var(--controls-top, 82px);
+    z-index: 60;
+    left: 0;
+    right: 0;
   }
   .controls-spacer{ display:none; }
   .controls-spacer.is-active{ display:block; }
