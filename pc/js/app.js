@@ -228,7 +228,6 @@
     wireProductButtons(list);
   }
 
-  
   function renderEmptyState(msg){
     if (!elGrid) return;
     elGrid.innerHTML = `
@@ -327,7 +326,6 @@ function renderSkeleton(){
     });
   }
 
-  
   function syncProductCard(id){
     try{
       if (!elGrid) return;

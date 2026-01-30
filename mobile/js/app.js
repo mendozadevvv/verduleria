@@ -300,7 +300,6 @@
     });
   }
 
-  
   function syncProductCard(id){
     try{
       if (!elGrid) return;
