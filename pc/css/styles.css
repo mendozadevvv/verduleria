@@ -1191,3 +1191,15 @@ body.view-pc .card-body{ gap:9px !important; }
   border-color:rgba(46,204,113,.35);
   box-shadow:0 10px 24px rgba(46,204,113,.18);
 }
+
+
+/* v32: controles simplificados (solo categoría) */
+.controls.controls-simple{
+  grid-template-columns: 1fr;
+}
+.controls.controls-simple .control-wide{
+  grid-column: 1 / -1;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+}

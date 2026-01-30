@@ -91,6 +91,7 @@
   }
 
   function syncOnlyUI(){
+    if (!elOnlyChips || !elOnly) return;
     // keep select + chips in sync
     try{ if (elOnly) elOnly.value = state.only; }catch(e){}
     if (!elOnlyChips) return;
@@ -102,6 +103,7 @@
   }
 
   function setOnly(value){
+    if (!elOnly) { state.only = (val||"all"); saveUI(); render(); return; }
     state.only = value || "all";
     saveUI();
     syncOnlyUI();
@@ -564,15 +566,15 @@ function wireCartButtons(){
       cart = {}; saveCart(); updateCartUI(); syncProductCard(id);
       });
 
-    btnClear.addEventListener("click", ()=>{
+    if (btnClear) btnClear.addEventListener("click", ()=>{
       state = { q:"", cat:"all", only:"all" };
-      elQ.value=""; elOnly.value="all"; elCat.value="all";
+      if (elQ) elQ.value=""; if (elOnly) elOnly.value="all"; if (elCat) elCat.value="all";
       saveUI(); syncOnlyUI(); render();
     });
 
-    elQ.addEventListener("input", ()=>{ state.q = elQ.value; saveUI(); render(); });
-    elOnly.addEventListener("change", ()=>{ setOnly(elOnly.value); });
-    elCat.addEventListener("change", ()=>{ state.cat = elCat.value; saveUI(); render(); });
+    if (elQ) elQ.addEventListener("input", ()=>{ state.q = elQ.value; saveUI(); render(); });
+    if (elOnly) elOnly.addEventListener("change", ()=>{ setOnly(elOnly.value); });
+    if (elCat) elCat.addEventListener("change", ()=>{ state.cat = elCat.value; saveUI(); render(); });
 
     // First paint: skeleton + cart counters
     renderSkeleton();

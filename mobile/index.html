@@ -99,38 +99,16 @@
           </div>
         </div>
 
-        <div class="controls">
-          <label class="control">
-            <span class="control-label">Buscar</span>
-            <input id="q" class="input" type="search" placeholder="Tomate, papa, banana…" autocomplete="off" />
-          </label>
+        <div class="controls controls-simple">
+  <label class="control control-wide">
+    <span class="control-label">Categoría</span>
+    <select id="cat" class="input">
+      <option value="all">Todas</option>
+    </select>
+  </label>
+</div>
 
-          <label class="control">
-            <span class="control-label">Categoría</span>
-            <select id="cat" class="input">
-              <option value="all">Todas</option>
-            </select>
-            <div class="chips" id="onlyChips" aria-label="Mostrar"></div>
-
-          </label>
-
-          <label class="control">
-            <span class="control-label">Mostrar</span>
-            <select id="only" class="input sr-only">
-              <option value="all">Todo</option>
-              <option value="destacados">Destacados</option>
-              <option value="ofertas">Ofertas</option>
-              <option value="mas-vendidos">Más vendidos</option>
-              <option value="con-stock">Solo con stock</option>
-            </select>
-            <div class="chips" id="onlyChips" aria-label="Mostrar"></div>
-
-          </label>
-
-          <button class="btn btn-ghost" id="btnClear" type="button">Limpiar</button>
-        </div>
-
-        <div class="grid" id="gridProducts" aria-live="polite"></div>
+<div class="grid" id="gridProducts" aria-live="polite"></div>
 
         <div class="notice">
           <div class="notice-title">🧠 Tip</div>
