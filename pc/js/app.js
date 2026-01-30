@@ -14,7 +14,7 @@
     syncOnlyChips();
     render();
   }
-* =========================================================
+/* =========================================================
    Verdulería Pack — app.js (sin librerías)
    - Catálogo desde data/productos.json
    - Carrito liviano en localStorage
