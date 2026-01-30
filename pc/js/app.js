@@ -73,6 +73,27 @@
 
   let productos = [];
   let state = { q: "", cat: "all", only: "all" };
+  // --- Only (chips/select) helpers ---
+  function syncOnlyUI(){
+    if (elOnly) elOnly.value = state.only || "all";
+    if (elOnlyChips){
+      const buttons = elOnlyChips.querySelectorAll("[data-only]");
+      buttons.forEach(btn=>{
+        const v = btn.getAttribute("data-only");
+        const active = (v === (state.only || "all"));
+        btn.classList.toggle("is-active", active);
+        btn.setAttribute("aria-pressed", active ? "true" : "false");
+      });
+    }
+  }
+
+  function setOnly(next){
+    state.only = next || "all";
+    saveUI();
+    syncOnlyUI();
+    if (typeof render === "function") render();
+  }
+
   let cart = {};
 
   function moneyARS(n) {
@@ -502,7 +523,19 @@ function wireCartButtons(){
   async function init(){
     yearEl.textContent = String(new Date().getFullYear());
     loadUI(); loadCart();
-    elQ.value = state.q;
+    
+    // Bind Only filters (select + chips)
+    if (elOnly){
+      elOnly.addEventListener("change", ()=> setOnly(elOnly.value));
+    }
+    if (elOnlyChips){
+      elOnlyChips.addEventListener("click", (e)=>{
+        const btn = e.target.closest("[data-only]");
+        if (!btn) return;
+        setOnly(btn.getAttribute("data-only"));
+      });
+    }
+elQ.value = state.q;
     if (elOnly) elOnly.value = state.only;
     syncOnlyUI();
 
