@@ -1157,53 +1157,8 @@ body.view-pc .price{ font-size:19px !important; }
 body.view-pc .card-body{ gap:9px !important; }
 
 
-
-/* ===========================
-   V25 — simplificación UI
-   =========================== */
-
-/* Chips (filtros) */
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{
-  border:1px solid rgba(0,0,0,.10);
-  background:#fff;
-  color:var(--text);
-  padding:8px 12px;
-  border-radius:999px;
-  font-weight:800;
-  font-size:.92rem;
-  cursor:pointer;
-  transition:transform .08s ease, box-shadow .12s ease, border-color .12s ease;
-}
-.chip:hover{transform:translateY(-1px);box-shadow:0 10px 22px rgba(0,0,0,.08)}
-.chip.is-active{
-  border-color:rgba(46,204,113,.35);
-  box-shadow:0 10px 22px rgba(46,204,113,.18);
-}
-.chips-control .control-label{display:block;margin-bottom:8px}
-
-/* Product card badges (minimal) */
-.card-badges{
-  position:absolute;
-  left:12px; top:12px;
-  display:flex; gap:8px;
-  align-items:center;
-}
-.dot.ok{background:var(--primary); box-shadow:0 0 0 6px rgba(46,204,113,.16)}
-.dot.off{background:rgba(0,0,0,.28); box-shadow:0 0 0 6px rgba(0,0,0,.08)}
-.pill{border:1px solid rgba(0,0,0,.10); background:rgba(255,255,255,.92)}
-.pill-hot{border-color:rgba(255,122,0,.28); box-shadow:0 10px 22px rgba(255,122,0,.14)}
-
-/* Card layout tweak: more aire, menos ruido */
-.card-body{padding:14px 14px 16px}
-.card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
-.card-title{line-height:1.15}
-.card-price{display:flex;flex-direction:column;align-items:flex-end;gap:2px}
-.card-price .price{font-size:1.1rem;font-weight:900}
-.card-price .unit{font-size:.86rem;color:var(--muted);font-weight:800}
-.card-actions{margin-top:12px;display:flex;gap:10px;align-items:center;justify-content:space-between}
-.btn-add{padding:10px 14px;border-radius:14px}
-
-/* Controls breathing room */
-.controls{gap:12px}
-.section{scroll-margin-top:90px}
+/* --- Simple chips filter --- */
+.chip-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.chip{border:1px solid rgba(0,0,0,.08);background:#fff;border-radius:999px;padding:10px 14px;font-weight:700;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.06)}
+.chip.is-active{border-color:rgba(46,204,113,.45);box-shadow:0 10px 26px rgba(46,204,113,.18)}
+@media (max-width:640px){.chip{padding:9px 12px;font-size:14px}}
