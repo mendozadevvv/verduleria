@@ -1013,3 +1013,113 @@ body.view-pc .card:hover{ transform: translateY(-3px); box-shadow: 0 18px 38px r
 .notice-body{opacity:.85;line-height:1.35}
 .link-btn{border:0;background:transparent;color:#1b9d5a;font-weight:700;cursor:pointer;padding:0}
 .link-btn:hover{text-decoration:underline}
+
+
+/* === V19 PC CARD OVERHAUL (compact, premium, no-photo friendly) === */
+body.view-pc .grid{ gap:18px !important; }
+
+body.view-pc .card{
+  display:flex;
+  flex-direction:column;
+  border-radius:18px !important;
+  overflow:hidden;
+  box-shadow:0 10px 26px rgba(0,0,0,.06) !important;
+}
+
+body.view-pc .card-top{
+  height:140px !important;
+  border-radius:16px !important;
+  margin:14px 14px 10px !important;
+}
+
+body.view-pc .card-top.noimg{
+  height:110px !important;
+  margin:14px 14px 8px !important;
+}
+
+body.view-pc .card-top img{
+  width:120px !important;
+  height:120px !important;
+  object-fit:contain !important;
+  padding:14px !important;
+  opacity:.92;
+}
+
+body.view-pc .card-body{
+  padding:10px 14px 14px !important;
+  display:flex;
+  flex-direction:column;
+  gap:10px !important;
+}
+
+body.view-pc .title{
+  font-size:15px !important;
+  font-weight:800 !important;
+  line-height:1.15;
+  margin:0 !important;
+}
+
+body.view-pc .price{
+  font-size:20px !important;
+  font-weight:900 !important;
+  letter-spacing:-.2px;
+  margin:0 !important;
+}
+
+body.view-pc .desc{
+  font-size:13px !important;
+  opacity:.78;
+  margin-top:-2px !important;
+}
+
+body.view-pc .row-bottom{
+  margin-top:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+body.view-pc .qty{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  background:rgba(0,0,0,.035);
+  border:1px solid rgba(0,0,0,.05);
+  border-radius:999px;
+  padding:6px 10px;
+}
+
+body.view-pc .qty button{
+  width:28px !important;
+  height:28px !important;
+  border-radius:999px !important;
+}
+
+body.view-pc .btn-agregar{
+  height:40px !important;
+  padding:0 16px !important;
+  border-radius:999px !important;
+  font-weight:800 !important;
+  white-space:nowrap;
+}
+
+body.view-pc .badge{
+  font-size:12px !important;
+  padding:4px 10px !important;
+  border-radius:999px !important;
+}
+
+/* Hover: premium but not jumpy */
+body.view-pc .card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 18px 38px rgba(0,0,0,.08) !important;
+}
+
+/* Ultra-wide: keep density */
+@media (min-width:1400px){
+  body.view-pc .grid{ grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
+}
+@media (min-width:1800px){
+  body.view-pc .grid{ grid-template-columns: repeat(5, minmax(0, 1fr)) !important; }
+}
