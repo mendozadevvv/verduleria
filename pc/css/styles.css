@@ -1123,3 +1123,35 @@ body.view-pc .card:hover{
 @media (min-width:1800px){
   body.view-pc .grid{ grid-template-columns: repeat(5, minmax(0, 1fr)) !important; }
 }
+
+
+/* === V20 PC CARD POLISH (100%: denser, text-first, no-photo minimal) === */
+body.view-pc .card{ min-height:340px; }
+
+/* NO PHOTO: stop being the hero */
+body.view-pc .card-top.noimg{
+  height:90px !important;
+  margin:14px 14px 8px !important;
+  background: linear-gradient(180deg, rgba(46,204,113,.06), rgba(46,204,113,.02)) !important;
+}
+body.view-pc .card-top.noimg img{
+  width:72px !important;
+  height:72px !important;
+  padding:10px !important;
+  opacity:.85 !important;
+}
+
+/* Make bottom controls lighter */
+body.view-pc .qty{ transform: scale(.90); transform-origin:left center; }
+body.view-pc .btn-agregar{
+  height:36px !important;
+  padding:0 14px !important;
+  font-size:14px !important;
+}
+
+/* Title/price readability */
+body.view-pc .title{ font-size:15px !important; }
+body.view-pc .price{ font-size:19px !important; }
+
+/* Slightly tighter overall */
+body.view-pc .card-body{ gap:9px !important; }
