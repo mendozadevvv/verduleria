@@ -194,7 +194,7 @@
 
       function setQty(q){
         if (q <= 0){ delete cart[p.id]; value.textContent="—"; add.textContent="Agregar"; }
-        else { cart[p.id] = { qty: q }; value.textContent=qtyFormat(q,p.unidad); add.textContent="Actualizar"; }
+        else { cart[p.id] = { qty: q }; value.textContent=qtyFormat(q,p.unidad); add.textContent="Agregar"; }
         saveCart(); updateCartUI();
       }
 
@@ -293,13 +293,29 @@
           const next = p.unidad==="kg" ? +(current + qty).toFixed(2) : Math.round(current + qty);
           cart[id] = { qty: next };
         }
-        saveCart(); updateCartUI(); render();
-        openCart();
+        saveCart(); updateCartUI(); syncProductCard(id);
+      openCart();
       });
     });
   }
 
-  function wireCartButtons(){
+  
+  function syncProductCard(id){
+    try{
+      if (!elGrid) return;
+      const card = elGrid.querySelector(`article[data-id="${CSS.escape(id)}"]`);
+      if (!card) return;
+      const p = productos.find(x=>x.id===id);
+      if (!p) return;
+      const value = card.querySelector(".qty-value");
+      const add = card.querySelector(".btn-add");
+      const q = cart[id]?.qty || 0;
+      if (value) value.textContent = q ? qtyFormat(q,p.unidad) : "—";
+      if (add) add.textContent = "Agregar"; // siempre
+    }catch(e){}
+  }
+
+function wireCartButtons(){
     elCartItems.querySelectorAll(".cart-item").forEach(node=>{
       const id = node.getAttribute("data-id");
       const p = productos.find(x=>x.id===id);
@@ -313,19 +329,19 @@
         if (next>0 && next<min) cart[id].qty = min;
         else if (next<=0) delete cart[id];
         else cart[id].qty = next;
-        saveCart(); updateCartUI(); render();
+        saveCart(); updateCartUI(); syncProductCard(id);
       });
 
       node.querySelector(".c-plus")?.addEventListener("click", ()=>{
         const curr = cart[id]?.qty || 0;
         const next = p.unidad==="kg" ? +(curr+step).toFixed(2) : Math.round(curr+step);
         cart[id] = { qty: next<min ? min : next };
-        saveCart(); updateCartUI(); render();
+        saveCart(); updateCartUI(); syncProductCard(id);
       });
 
       node.querySelector(".c-remove")?.addEventListener("click", ()=>{
         delete cart[id];
-        saveCart(); updateCartUI(); render();
+        saveCart(); updateCartUI(); syncProductCard(id);
       });
     });
   }
@@ -482,8 +498,8 @@
     btnWhatsApp2 && btnWhatsApp2.addEventListener("click", sendWhatsApp);
     btnClearCart.addEventListener("click", ()=>{
       if (!confirm("¿Vaciar el pedido?")) return;
-      cart = {}; saveCart(); updateCartUI(); render();
-    });
+      cart = {}; saveCart(); updateCartUI(); syncProductCard(id);
+      });
 
     btnClear.addEventListener("click", ()=>{
       state = { q:"", cat:"all", only:"all" };
