@@ -606,51 +606,7 @@ function wireCartButtons(){
     if (elCat) elCat.addEventListener("change", ()=>{ state.cat = elCat.value; saveUI(); render(); });
 
     // Keep category selector fixed while browsing the catalog (mobile/desktop)
-    (function setupFixedControls(){
-      const bar = document.getElementById("controlsBar");
-      const spacer = document.getElementById("controlsSpacer");
-      const section = document.getElementById("catalogo");
-      if (!bar || !spacer || !section) return;
-
-      const header = document.querySelector(".header");
-      const container = section.querySelector(".container") || section;
-
-      const getTop = ()=>{
-        const h = header ? header.offsetHeight : 70;
-        return h + 12; // gap debajo del header
-      };
-
-      const update = ()=>{
-        const TOP = getTop();
-        document.documentElement.style.setProperty("--controls-top", TOP + "px");
-
-        const rect = section.getBoundingClientRect();
-        const barH = bar.offsetHeight || 0;
-        const shouldFix = (rect.top <= TOP) && (rect.bottom > (TOP + barH + 24));
-
-        if (shouldFix){
-          const cRect = container.getBoundingClientRect();
-          bar.classList.add("is-fixed");
-          spacer.classList.add("is-active");
-          spacer.style.height = barH + "px";
-
-          // Alinear el fixed al ancho/posición del contenedor (evita que quede centrado raro)
-          bar.style.left = cRect.left + "px";
-          bar.style.width = cRect.width + "px";
-        }else{
-          bar.classList.remove("is-fixed");
-          spacer.classList.remove("is-active");
-          spacer.style.height = "0px";
-          bar.style.left = "";
-          bar.style.width = "";
-        }
-      };
-
-      window.addEventListener("scroll", update, { passive: true });
-      window.addEventListener("resize", update);
-      window.addEventListener("load", update);
-      requestAnimationFrame(update);
-    })();
+    (function setupFixedControls(){ /* disabled: using CSS position:sticky inside #catalogo */ })();
 // First paint: skeleton + cart counters
     renderSkeleton();
     updateCartUI();
@@ -697,35 +653,3 @@ function wireCartButtons(){
   }
   init();
 })();
-
-
-
-// === FORCE CATEGORY BAR FIXED (never moves) ===
-function forceControlsBarFixed(){
-  const bar = document.getElementById('controlsBar');
-  const spacer = document.getElementById('controlsSpacer');
-  if(!bar) return;
-
-  // Move bar to <body> so it is never trapped by containers/transforms
-  if(bar.parentElement !== document.body){
-    document.body.appendChild(bar);
-  }
-
-  // Calculate top offset under header
-  const header = document.querySelector('.header');
-  const headerH = header ? Math.ceil(header.getBoundingClientRect().height) : 0;
-  const top = headerH + 12; // gap under header
-  bar.style.top = top + 'px';
-
-  bar.classList.add('controls-fixed');
-
-  // Keep layout space where it originally was
-  if(spacer){
-    const h = Math.ceil(bar.getBoundingClientRect().height || 90);
-    spacer.style.height = h + 'px';
-  }
-}
-window.addEventListener('DOMContentLoaded', forceControlsBarFixed);
-window.addEventListener('load', forceControlsBarFixed);
-window.addEventListener('resize', forceControlsBarFixed);
-
